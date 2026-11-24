@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Sổ Tay Toàn Bộ Hàm Excel 365 Pro</title>
+    <title>Sổ Tay Hàm Excel (2010 - 365) & BI Chuyên Sâu</title>
     <style>
         :root {
             --primary: #107c41;
@@ -11,6 +11,10 @@
             --primary-light: #e6f4ea;
             --accent: #0369a1;
             --accent-light: #e0f2fe;
+            --legacy: #7c3aed;
+            --legacy-light: #f3e8ff;
+            --bi: #b45309;
+            --bi-light: #fef3c7;
             --bg: #f1f5f9;
             --card-bg: #ffffff;
             --text: #1e293b;
@@ -18,7 +22,7 @@
             --border: #e2e8f0;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-        body { background-color: var(--bg); color: var(--text); padding-bottom: 48px; }
+        body { background-color: var(--bg); color: var(--text); padding-bottom: 52px; }
 
         header {
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
@@ -35,20 +39,21 @@
             justify-content: space-between;
             margin-bottom: 10px;
         }
-        header h1 { font-size: 1.15rem; font-weight: 700; }
+        header h1 { font-size: 1.08rem; font-weight: 700; }
         .count-badge {
-            font-size: 0.75rem;
+            font-size: 0.74rem;
             background: rgba(255,255,255,0.22);
             padding: 4px 10px;
             border-radius: 999px;
             font-weight: 600;
+            white-space: nowrap;
         }
         .search-box {
             width: 100%;
             padding: 10px 14px;
             border-radius: 8px;
             border: none;
-            font-size: 0.95rem;
+            font-size: 0.94rem;
             outline: none;
             background: #ffffff;
             color: #0f172a;
@@ -68,12 +73,12 @@
         }
         .tabs::-webkit-scrollbar { display: none; }
         .tab-btn {
-            padding: 7px 14px;
+            padding: 7px 13px;
             border-radius: 999px;
             border: 1px solid var(--border);
             background: var(--bg);
             color: var(--text-sub);
-            font-size: 0.82rem;
+            font-size: 0.8rem;
             font-weight: 600;
             white-space: nowrap;
             cursor: pointer;
@@ -85,7 +90,7 @@
             border-color: var(--primary);
         }
 
-        .container { padding: 12px; max-width: 860px; margin: 0 auto; }
+        .container { padding: 12px; max-width: 880px; margin: 0 auto; }
         .card {
             background: var(--card-bg);
             border-radius: 12px;
@@ -102,14 +107,30 @@
             margin-bottom: 8px;
             flex-wrap: wrap;
         }
-        .title-group { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-        .card-title { font-size: 1.08rem; font-weight: 800; color: var(--primary-dark); }
+        .title-group { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; }
+        .card-title { font-size: 1.04rem; font-weight: 800; color: var(--primary-dark); }
         .tag-365 {
             font-size: 0.68rem;
             padding: 2px 7px;
             border-radius: 4px;
             background: var(--accent-light);
             color: var(--accent);
+            font-weight: 700;
+        }
+        .tag-legacy {
+            font-size: 0.68rem;
+            padding: 2px 7px;
+            border-radius: 4px;
+            background: var(--legacy-light);
+            color: var(--legacy);
+            font-weight: 700;
+        }
+        .tag-bi {
+            font-size: 0.68rem;
+            padding: 2px 7px;
+            border-radius: 4px;
+            background: var(--bi-light);
+            color: var(--bi);
             font-weight: 700;
         }
         .badge {
@@ -132,7 +153,7 @@
         }
         .syntax {
             font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-            font-size: 0.81rem;
+            font-size: 0.8rem;
             color: #0f172a;
             white-space: pre-wrap;
             word-break: break-word;
@@ -151,7 +172,7 @@
             color: #334155;
             cursor: pointer;
         }
-        .desc { font-size: 0.9rem; line-height: 1.5; color: var(--text); margin-bottom: 10px; }
+        .desc { font-size: 0.9rem; line-height: 1.55; color: var(--text); margin-bottom: 10px; }
 
         .example-box {
             background: #f8fafc;
@@ -169,20 +190,26 @@
             text-transform: uppercase;
             letter-spacing: 0.4px;
         }
+        .table-scroll {
+            width: 100%;
+            overflow-x: auto;
+            margin: 6px 0 8px 0;
+        }
         .mini-table {
             width: 100%;
             border-collapse: collapse;
-            margin: 6px 0 8px 0;
             font-size: 0.78rem;
             background: #ffffff;
+            min-width: 320px;
         }
         .mini-table th, .mini-table td {
             border: 1px solid #cbd5e1;
             padding: 5px 7px;
             text-align: left;
+            vertical-align: top;
         }
         .mini-table th { background: #e2e8f0; font-weight: 600; color: #1e293b; }
-        .problem-text { margin-bottom: 6px; line-height: 1.45; }
+        .problem-text { margin-bottom: 6px; line-height: 1.48; }
         .formula-demo {
             position: relative;
             font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
@@ -192,15 +219,16 @@
             border-radius: 6px;
             border: 1px dashed #6ee7b7;
             margin-top: 6px;
-            line-height: 1.45;
-            font-size: 0.81rem;
+            line-height: 1.5;
+            font-size: 0.8rem;
+            white-space: pre-wrap;
             word-break: break-word;
         }
         .result-text {
-            margin-top: 6px;
+            margin-top: 7px;
             color: #334155;
             font-size: 0.83rem;
-            line-height: 1.45;
+            line-height: 1.48;
         }
         .empty-msg {
             text-align: center;
@@ -214,19 +242,24 @@
 
 <header>
     <div class="header-top">
-        <h1>📗 Hàm Mới Excel 365 Pro</h1>
-        <span class="count-badge" id="itemCount">24 hàm</span>
+        <h1>📗 Sổ Tay Hàm Excel &amp; BI</h1>
+        <span class="count-badge" id="itemCount">38 mục</span>
     </div>
-    <input type="text" id="searchInput" class="search-box" placeholder="Tìm tên hàm, công dụng, ví dụ (XLOOKUP, GROUPBY, SCAN...)">
+    <input type="text" id="searchInput" class="search-box" placeholder="Tìm hàm, Pivot Table, Power Query, Power Pivot, DAX...">
 </header>
 
 <div class="tabs" id="categoryTabs">
-    <button class="tab-btn active" data-cat="all">Tất cả (24)</button>
-    <button class="tab-btn" data-cat="lookup">Tra cứu</button>
-    <button class="tab-btn" data-cat="array">Mảng động</button>
-    <button class="tab-btn" data-cat="text">Xử lý Chuỗi</button>
-    <button class="tab-btn" data-cat="reshape">Tổng hợp & Xoay bảng</button>
-    <button class="tab-btn" data-cat="lambda">LET & LAMBDA</button>
+    <button class="tab-btn active" data-cat="all">Tất cả (38)</button>
+    <button class="tab-btn" data-cat="pivot_guide">Pivot Table</button>
+    <button class="tab-btn" data-cat="pq_guide">Power Query</button>
+    <button class="tab-btn" data-cat="pp_guide">Power Pivot &amp; DAX</button>
+    <button class="tab-btn" data-cat="excel2010">Hàm 2010+</button>
+    <button class="tab-btn" data-cat="excel2016">Hàm 2016-2019+</button>
+    <button class="tab-btn" data-cat="lookup">Tra cứu 365</button>
+    <button class="tab-btn" data-cat="array">Mảng động 365</button>
+    <button class="tab-btn" data-cat="text">Chuỗi 365</button>
+    <button class="tab-btn" data-cat="reshape">Tổng hợp &amp; Xoay 365</button>
+    <button class="tab-btn" data-cat="lambda">LET &amp; LAMBDA</button>
 </div>
 
 <div class="container" id="contentList"></div>
@@ -234,7 +267,213 @@
 <script id="excelDataJson" type="application/json">
 [
   {
+    "cat": "excel2010",
+    "ver": "Excel 2010+",
+    "badge": "Tính tổng nhiều ĐK",
+    "title": "SUMIFS",
+    "syntax": "=SUMIFS(sum_range, criteria_range1, criteria1, [criteria_range2, criteria2], ...)",
+    "desc": "Ra mắt từ Excel 2007/2010, là hàm tính tổng đa điều kiện phổ biến nhất. Hỗ trợ toán tử so sánh (>, <, >=, <=, <>) và ký tự đại diện (*, ?).",
+    "table": [
+      [
+        "Tuyến",
+        "Trạng Thái",
+        "Doanh Thu"
+      ],
+      [
+        "Quy Nhơn",
+        "Hoàn thành",
+        "12.000.000"
+      ],
+      [
+        "Quy Nhơn",
+        "Hủy",
+        "2.500.000"
+      ],
+      [
+        "Đà Nẵng",
+        "Hoàn thành",
+        "18.500.000"
+      ]
+    ],
+    "problem": "Tính tổng doanh thu tuyến Quy Nhơn với trạng thái khác 'Hủy'.",
+    "formula": "=SUMIFS(C2:C4, A2:A4, \"Quy Nhơn\", B2:B4, \"<>Hủy\")",
+    "result": "12.000.000 (Loại bỏ dòng bị Hủy nhờ điều kiện <>Hủy)."
+  },
+  {
+    "cat": "excel2010",
+    "ver": "Excel 2010+",
+    "badge": "Đếm nhiều ĐK",
+    "title": "COUNTIFS",
+    "syntax": "=COUNTIFS(criteria_range1, criteria1, [criteria_range2, criteria2], ...)",
+    "desc": "Đếm số dòng thỏa mãn đồng thời nhiều điều kiện trên các cột khác nhau.",
+    "table": [
+      [
+        "Nhân Viên",
+        "Kho",
+        "Giá Trị Đơn"
+      ],
+      [
+        "An",
+        "Quy Nhơn",
+        "1.500.000"
+      ],
+      [
+        "An",
+        "Quy Nhơn",
+        "450.000"
+      ],
+      [
+        "Bình",
+        "Quy Nhơn",
+        "2.200.000"
+      ]
+    ],
+    "problem": "Đếm số đơn hàng của 'An' tại kho 'Quy Nhơn' có giá trị từ 1.000.000 trở lên.",
+    "formula": "=COUNTIFS(A2:A4, \"An\", B2:B4, \"Quy Nhơn\", C2:C4, \">=1000000\")",
+    "result": "1 (Chỉ tính dòng đầu tiên thỏa mãn cả 3 điều kiện)."
+  },
+  {
+    "cat": "excel2010",
+    "ver": "Excel 2010+",
+    "badge": "Trung bình nhiều ĐK",
+    "title": "AVERAGEIFS",
+    "syntax": "=AVERAGEIFS(average_range, criteria_range1, criteria1, [criteria_range2, criteria2], ...)",
+    "desc": "Tính giá trị trung bình của các ô thỏa mãn nhiều điều kiện đồng thời, tự động bỏ qua ô trống và ô chứa chữ.",
+    "table": [
+      [
+        "Khu Vực",
+        "Sản Phẩm",
+        "Doanh Số"
+      ],
+      [
+        "Bình Định",
+        "Sữa nước",
+        "200"
+      ],
+      [
+        "Bình Định",
+        "Sữa nước",
+        "400"
+      ],
+      [
+        "Bình Định",
+        "Sữa chua",
+        "100"
+      ]
+    ],
+    "problem": "Tính doanh số trung bình của 'Sữa nước' tại 'Bình Định'.",
+    "formula": "=AVERAGEIFS(C2:C4, A2:A4, \"Bình Định\", B2:B4, \"Sữa nước\")",
+    "result": "300 ((200 + 400) / 2)."
+  },
+  {
+    "cat": "excel2010",
+    "ver": "Excel 2010+",
+    "badge": "Bắt lỗi công thức",
+    "title": "IFERROR",
+    "syntax": "=IFERROR(value, value_if_error)",
+    "desc": "Bắt mọi lỗi (#N/A, #VALUE!, #DIV/0!, #REF!, #NAME?) và trả về giá trị thay thế gọn đẹp.",
+    "table": [
+      [
+        "Doanh Thu (A2)",
+        "Số Ngày Bán (B2)"
+      ],
+      [
+        "15.000.000",
+        "0"
+      ]
+    ],
+    "problem": "Tính doanh thu bình quân/ngày; nếu chia cho 0 báo lỗi #DIV/0! thì trả về 0.",
+    "formula": "=IFERROR(A2/B2, 0)",
+    "result": "0 (Thay vì hiện lỗi #DIV/0! gây rối bảng báo cáo)."
+  },
+  {
+    "cat": "excel2010",
+    "ver": "Excel 2010+",
+    "badge": "Tính tổng có lọc",
+    "title": "SUBTOTAL & AGGREGATE",
+    "syntax": "=SUBTOTAL(function_num, ref1) | =AGGREGATE(function_num, options, array)",
+    "desc": "SUBTOTAL tính toán trên vùng đang lọc (Filter). AGGREGATE nâng cao hơn, cho phép bỏ qua cả dòng ẩn lẫn ô lỗi bên trong vùng dữ liệu.",
+    "table": [
+      [
+        "Cột Tiền (C2:C10)"
+      ]
+    ],
+    "problem": "Tính tổng cột C2:C10, bỏ qua dòng bị ẩn do Filter và bỏ qua cả các ô đang bị lỗi công thức.",
+    "formula": "=AGGREGATE(9, 7, C2:C10)",
+    "result": "Trả về tổng sạch các dòng hiển thị và không lỗi (9 = SUM, 7 = bỏ ẩn & lỗi)."
+  },
+  {
+    "cat": "excel2010",
+    "ver": "Excel 2010+",
+    "badge": "Ngày làm việc",
+    "title": "WORKDAY.INTL & NETWORKDAYS.INTL",
+    "syntax": "=WORKDAY.INTL(start_date, days, [weekend], [holidays])",
+    "desc": "Cho phép tùy chỉnh ngày nghỉ cuối tuần (ví dụ chỉ nghỉ Chủ Nhật dùng mã 11) và trừ thêm danh sách ngày lễ.",
+    "table": [
+      [
+        "Ngày Giao Hàng (A2)",
+        "Số Ngày Công (B2)"
+      ],
+      [
+        "24/11/2026",
+        "5"
+      ]
+    ],
+    "problem": "Tính ngày dự kiến hoàn tất sau 5 ngày làm việc, chỉ nghỉ Chủ Nhật (mã 11).",
+    "formula": "=WORKDAY.INTL(A2, B2, 11)",
+    "result": "Tự động bỏ qua các ngày Chủ Nhật nằm giữa khoảng thời gian tính."
+  },
+  {
+    "cat": "excel2016",
+    "ver": "Excel 2016+",
+    "badge": "Max / Min có ĐK",
+    "title": "MAXIFS & MINIFS",
+    "syntax": "=MAXIFS(max_range, criteria_range1, criteria1, ...) | =MINIFS(min_range, criteria_range1, criteria1, ...)",
+    "desc": "Tìm giá trị lớn nhất hoặc nhỏ nhất theo điều kiện mà không cần dùng công thức mảng phức tạp.",
+    "table": [
+      [
+        "Kho",
+        "Thời Gian Giao (Phút)"
+      ],
+      [
+        "Quy Nhơn",
+        "45"
+      ],
+      [
+        "Quy Nhơn",
+        "90"
+      ],
+      [
+        "Đà Nẵng",
+        "30"
+      ]
+    ],
+    "problem": "Tìm thời gian giao hàng lâu nhất (MAX) và nhanh nhất (MIN) riêng tại kho 'Quy Nhơn'.",
+    "formula": "Max: =MAXIFS(B2:B4, A2:A4, \"Quy Nhơn\") | Min: =MINIFS(B2:B4, A2:A4, \"Quy Nhơn\")",
+    "result": "Max = 90 phút; Min = 45 phút."
+  },
+  {
+    "cat": "excel2016",
+    "ver": "Excel 2016+",
+    "badge": "Nhiều điều kiện IF",
+    "title": "IFS & SWITCH",
+    "syntax": "=IFS(condition1, value1, [condition2, value2], ...) | =SWITCH(expression, val1, res1, ..., [default])",
+    "desc": "IFS thay thế chuỗi hàm IF lồng nhau dài dòng. SWITCH so sánh 1 biểu thức với nhiều giá trị cố định nhanh gọn.",
+    "table": [
+      [
+        "Tỷ Lệ Đạt KPI (A2)"
+      ],
+      [
+        "0.95"
+      ]
+    ],
+    "problem": "Xếp loại KPI: >=1.0 là 'Xuất sắc', >=0.8 là 'Đạt', còn lại là 'Cần cải thiện'.",
+    "formula": "=IFS(A2>=1, \"Xuất sắc\", A2>=0.8, \"Đạt\", TRUE, \"Cần cải thiện\")",
+    "result": "Đạt (Vì 0.95 >= 0.8)."
+  },
+  {
     "cat": "lookup",
+    "ver": "Excel 365",
     "badge": "Tra cứu 2 chiều",
     "title": "XLOOKUP",
     "syntax": "=XLOOKUP(lookup_value, lookup_array, return_array, [if_not_found], [match_mode], [search_mode])",
@@ -271,6 +510,7 @@
   },
   {
     "cat": "lookup",
+    "ver": "Excel 365",
     "badge": "Vị trí động",
     "title": "XMATCH",
     "syntax": "=XMATCH(lookup_value, lookup_array, [match_mode], [search_mode])",
@@ -297,7 +537,8 @@
   },
   {
     "cat": "lookup",
-    "badge": "Lấy ảnh / Dữ liệu",
+    "ver": "Excel 365",
+    "badge": "Chèn ảnh vào ô",
     "title": "IMAGE",
     "syntax": "=IMAGE(source, [alt_text], [sizing], [height], [width])",
     "desc": "Chèn trực tiếp hình ảnh từ đường dẫn URL (HTTPS) vào bên trong ô Excel, có thể dùng chung với XLOOKUP để làm bảng tra cứu hình ảnh sản phẩm.",
@@ -319,6 +560,7 @@
   },
   {
     "cat": "array",
+    "ver": "Excel 365",
     "badge": "Lọc đa điều kiện",
     "title": "FILTER",
     "syntax": "=FILTER(array, include, [if_empty])",
@@ -355,6 +597,7 @@
   },
   {
     "cat": "array",
+    "ver": "Excel 365",
     "badge": "Lọc duy nhất",
     "title": "UNIQUE",
     "syntax": "=UNIQUE(array, [by_col], [exactly_once])",
@@ -382,6 +625,7 @@
   },
   {
     "cat": "array",
+    "ver": "Excel 365",
     "badge": "Sắp xếp đa cấp",
     "title": "SORT & SORTBY",
     "syntax": "=SORTBY(array, by_array1, [sort_order1], [by_array2, sort_order2], ...)",
@@ -414,6 +658,7 @@
   },
   {
     "cat": "array",
+    "ver": "Excel 365",
     "badge": "Tạo chuỗi số/ngày",
     "title": "SEQUENCE",
     "syntax": "=SEQUENCE(rows, [columns], [start], [step])",
@@ -434,6 +679,7 @@
   },
   {
     "cat": "array",
+    "ver": "Excel 365",
     "badge": "Mảng ngẫu nhiên",
     "title": "RANDARRAY",
     "syntax": "=RANDARRAY([rows], [columns], [min], [max], [whole_number])",
@@ -449,6 +695,7 @@
   },
   {
     "cat": "text",
+    "ver": "Excel 365",
     "badge": "Tách chuỗi động",
     "title": "TEXTSPLIT",
     "syntax": "=TEXTSPLIT(text, col_delimiter, [row_delimiter], [ignore_empty], [match_mode], [pad_with])",
@@ -467,6 +714,7 @@
   },
   {
     "cat": "text",
+    "ver": "Excel 365",
     "badge": "Cắt chuỗi thông minh",
     "title": "TEXTBEFORE & TEXTAFTER",
     "syntax": "=TEXTBEFORE(text, delimiter, [instance_num], [match_mode], [match_end], [if_not_found])",
@@ -485,6 +733,7 @@
   },
   {
     "cat": "text",
+    "ver": "Excel 365",
     "badge": "Nối chuỗi bỏ trống",
     "title": "TEXTJOIN",
     "syntax": "=TEXTJOIN(delimiter, ignore_empty, text1, [text2], ...)",
@@ -513,7 +762,8 @@
   },
   {
     "cat": "text",
-    "badge": "Chuyển số / Regex",
+    "ver": "Excel 365",
+    "badge": "Chuyển mảng thành chuỗi",
     "title": "VALUETOTEXT & ARRAYTOTEXT",
     "syntax": "=ARRAYTOTEXT(array, [format])",
     "desc": "Chuyển đổi toàn bộ một bảng hoặc vùng dữ liệu mảng thành một chuỗi văn bản duy nhất (format = 0: gọn gàng; format = 1: dạng mảng chuẩn Excel).",
@@ -536,6 +786,7 @@
   },
   {
     "cat": "reshape",
+    "ver": "Excel 365",
     "badge": "Thay Pivot Table",
     "title": "GROUPBY",
     "syntax": "=GROUPBY(row_fields, values, function, [field_headers], [total_depth], [sort_order], [filter_array])",
@@ -568,6 +819,7 @@
   },
   {
     "cat": "reshape",
+    "ver": "Excel 365",
     "badge": "Pivot 2 chiều động",
     "title": "PIVOTBY",
     "syntax": "=PIVOTBY(row_fields, col_fields, values, function, [field_headers], [row_total_depth], [row_sort_order], [col_total_depth])",
@@ -595,6 +847,7 @@
   },
   {
     "cat": "reshape",
+    "ver": "Excel 365",
     "badge": "Gộp nhiều Sheet",
     "title": "VSTACK & HSTACK",
     "syntax": "=VSTACK(array1, [array2], ...) | =HSTACK(array1, [array2], ...)",
@@ -612,6 +865,7 @@
   },
   {
     "cat": "reshape",
+    "ver": "Excel 365",
     "badge": "Chuyển đổi 1D <-> 2D",
     "title": "TOCOL, TOROW, WRAPROWS, WRAPCOLS",
     "syntax": "=TOCOL(array, [ignore], [scan_by_column]) | =WRAPROWS(vector, wrap_count, [pad_with])",
@@ -634,6 +888,7 @@
   },
   {
     "cat": "reshape",
+    "ver": "Excel 365",
     "badge": "Cắt & Trích cột",
     "title": "TAKE, DROP, CHOOSECOLS, CHOOSEROWS",
     "syntax": "=TAKE(array, rows, [columns]) | =CHOOSECOLS(array, col_num1, [col_num2], ...)",
@@ -652,6 +907,7 @@
   },
   {
     "cat": "reshape",
+    "ver": "Excel 365",
     "badge": "Mở rộng mảng",
     "title": "EXPAND",
     "syntax": "=EXPAND(array, rows, [columns], [pad_with])",
@@ -667,6 +923,7 @@
   },
   {
     "cat": "lambda",
+    "ver": "Excel 365",
     "badge": "Tối ưu hiệu năng",
     "title": "LET",
     "syntax": "=LET(name1, value1, [name2, value2], ..., calculation)",
@@ -683,6 +940,7 @@
   },
   {
     "cat": "lambda",
+    "ver": "Excel 365",
     "badge": "Tự tạo hàm mới",
     "title": "LAMBDA",
     "syntax": "=LAMBDA([parameter1, parameter2, ...], calculation)",
@@ -699,6 +957,7 @@
   },
   {
     "cat": "lambda",
+    "ver": "Excel 365",
     "badge": "Lặp từng dòng/cột",
     "title": "BYROW & BYCOL",
     "syntax": "=BYROW(array, LAMBDA(row, calculation)) | =BYCOL(array, LAMBDA(col, calculation))",
@@ -729,6 +988,7 @@
   },
   {
     "cat": "lambda",
+    "ver": "Excel 365",
     "badge": "Biến đổi từng ô",
     "title": "MAP",
     "syntax": "=MAP(array1, [array2], ..., LAMBDA(value1, [value2], calculation))",
@@ -744,6 +1004,7 @@
   },
   {
     "cat": "lambda",
+    "ver": "Excel 365",
     "badge": "Tính lũy kế động",
     "title": "SCAN & REDUCE",
     "syntax": "=SCAN([initial_value], array, LAMBDA(accumulator, value, calculation))",
@@ -772,6 +1033,7 @@
   },
   {
     "cat": "lambda",
+    "ver": "Excel 365",
     "badge": "Tạo ma trận tùy biến",
     "title": "MAKEARRAY",
     "syntax": "=MAKEARRAY(rows, cols, LAMBDA(row, col, calculation))",
@@ -784,6 +1046,224 @@
     "problem": "Tạo nhanh bảng ma trận nhân 5 dòng x 5 cột chỉ bằng một công thức.",
     "formula": "=MAKEARRAY(5, 5, LAMBDA(r, c, r * c))",
     "result": "Sinh ra bảng ma trận 5x5 với giá trị mỗi ô bằng chỉ số dòng nhân chỉ số cột."
+  },
+  {
+    "cat": "pivot_guide",
+    "ver": "Pivot Table",
+    "badge": "Báo cáo & Dashboard",
+    "title": "PIVOT TABLE CHUYÊN SÂU: 4 VÙNG, CALCULATED FIELD & SLICER",
+    "syntax": "Insert -> PivotTable -> Kéo thả trường vào Filters | Columns | Rows | Values",
+    "desc": "Pivot Table cho phép tổng hợp, nhóm và phân tích hàng trăm nghìn dòng dữ liệu tức thì chỉ bằng thao tác kéo thả. Để dùng hiệu quả, dữ liệu nguồn phải chuẩn dạng bảng (không có dòng/cột trống xen kẽ, mỗi cột 1 loại dữ liệu, định dạng Excel Table Ctrl+T).",
+    "table": [
+      [
+        "Vùng trong Pivot",
+        "Chức năng chính",
+        "Ví dụ thực tế"
+      ],
+      [
+        "Rows (Hàng)",
+        "Phân cấp danh mục theo chiều dọc",
+        "Khu vực -> Tỉnh/Thành -> Khách hàng"
+      ],
+      [
+        "Columns (Cột)",
+        "Phân nhóm ngang (thường là thời gian/trạng thái)",
+        "Tháng (T01..T12) hoặc Trạng thái giao hàng"
+      ],
+      [
+        "Values (Giá trị)",
+        "Tính toán số liệu (SUM, COUNT, AVERAGE, MAX/MIN)",
+        "Tổng doanh thu, Số đơn hàng, % tỷ trọng"
+      ],
+      [
+        "Filters (Bộ lọc)",
+        "Lọc toàn bộ bảng Pivot theo tiêu chí chung",
+        "Lọc riêng Năm 2026 hoặc Kho Bình Định"
+      ]
+    ],
+    "problem": "Quy trình chuẩn tạo báo cáo tổng hợp có Slicer đồng bộ và trường tính toán mới (Calculated Field):",
+    "formula": "1. Chọn vùng dữ liệu -> Nhấn Ctrl+T (tạo Table) -> Insert -> PivotTable.\n2. Kéo trường phân nhóm vào Rows/Columns, trường số vào Values.\n3. Tạo Calculated Field: PivotTable Analyze -> Fields, Items, & Sets -> Calculated Field (VD: LaiGop = DoanhThu - GiaVon).\n4. Gắn Slicer/Timeline: Insert Slicer -> Chuột phải Slicer -> Report Connections -> Tích chọn tất cả Pivot liên quan.",
+    "result": "Bảng báo cáo động trực quan, bấm 1 nút Slicer lọc đồng bộ nhiều bảng/biểu đồ cùng lúc và tự mở rộng khi thêm dữ liệu vào Table gốc."
+  },
+  {
+    "cat": "pivot_guide",
+    "ver": "Pivot Table",
+    "badge": "Phân tích nâng cao",
+    "title": "SHOW VALUES AS, GROUPING & CLASSIC PIVOT LAYOUT",
+    "syntax": "Chuột phải ô Values -> Show Values As | Chuột phải ô Ngày/Số -> Group",
+    "desc": "Biến Pivot Table từ bảng tổng hợp thô thành báo cáo phân tích chuyên sâu: tính tỷ trọng %, tăng trưởng kỳ trước, gom nhóm ngày tháng/khoảng số và hiển thị dạng bảng truyền thống dễ copy.",
+    "table": [
+      [
+        "Tính năng",
+        "Thao tác thực hiện",
+        "Ứng dụng thực tế"
+      ],
+      [
+        "% of Grand Total / Column",
+        "Chuột phải Values -> Show Values As",
+        "Tính % đóng góp doanh thu từng chi nhánh"
+      ],
+      [
+        "% Difference From",
+        "Show Values As -> chọn Base Field (Tháng) & (Previous)",
+        "Tính % tăng/giảm doanh số so với tháng trước"
+      ],
+      [
+        "Group Date (Ngày/Tháng/Quý/Năm)",
+        "Chuột phải ô Ngày -> Group",
+        "Tự động gom ngày lẻ thành Quý & Năm"
+      ],
+      [
+        "Tabular Form (Dạng bảng chuẩn)",
+        "Design -> Report Layout -> Show in Tabular Form",
+        "Mỗi trường nằm 1 cột riêng, dễ lọc & xuất dữ liệu"
+      ]
+    ],
+    "problem": "Làm sao để báo cáo Pivot hiển thị rõ ràng từng cột (không gộp chung 1 cột) và tính lũy kế từ đầu năm?",
+    "formula": "1. Vào tab Design -> Report Layout -> chọn Show in Tabular Form + Repeat All Item Labels.\n2. Kéo thêm 1 trường Doanh Thu vào Values -> Chuột phải -> Show Values As -> Running Total In -> chọn Tháng.",
+    "result": "Bảng có cấu trúc cột rõ ràng, lặp lại nhãn đầy đủ ở từng dòng và hiển thị cột lũy kế tăng dần qua các tháng."
+  },
+  {
+    "cat": "pq_guide",
+    "ver": "Power Query",
+    "badge": "ETL & Làm sạch dữ liệu",
+    "title": "POWER QUERY TOÀN TẬP: QUY TRÌNH ETL & CHUẨN HÓA BẢNG",
+    "syntax": "Data -> Get Data -> From File / Folder / Table/Range -> Transform Data",
+    "desc": "Power Query là công cụ ETL (Extract - Transform - Load) mạnh mẽ nhất trong Excel, ghi lại mọi bước biến đổi dữ liệu thành chuỗi lệnh tự động. Mỗi khi dữ liệu nguồn thay đổi, bạn chỉ cần bấm Refresh All là toàn bộ quy trình làm sạch chạy lại từ đầu.",
+    "table": [
+      [
+        "Thao tác Power Query",
+        "Vị trí trên thanh công cụ",
+        "Công dụng cốt lõi"
+      ],
+      [
+        "Promote Headers",
+        "Home / Transform -> Use First Row as Headers",
+        "Đưa dòng 1 làm tên cột chuẩn"
+      ],
+      [
+        "Change Data Type",
+        "Click biểu tượng ABC / 123 bên cạnh tên cột",
+        "Ép kiểu Date, Number, Text chuẩn xác (tránh lỗi tính toán)"
+      ],
+      [
+        "Remove / Split / Extract",
+        "Transform / Add Column",
+        "Xóa cột thừa, tách cột theo ký tự, cắt chuỗi nhanh"
+      ],
+      [
+        "Unpivot Other Columns",
+        "Chọn cột cố định -> Chuột phải -> Unpivot Other Columns",
+        "Xoay bảng ngang (nhiều cột tháng) thành bảng dọc chuẩn"
+      ]
+    ],
+    "problem": "Xử lý bảng báo cáo xuất từ phần mềm có các cột Tháng 1, Tháng 2, Tháng 3 nằm ngang và lẫn dòng trống/tổng phụ:",
+    "formula": "1. Data -> From Table/Range để mở Power Query Editor.\n2. Filter bỏ các dòng null hoặc dòng chứa chữ 'Total' ở cột danh mục.\n3. Chọn cột Mã/Tên -> Chuột phải -> Unpivot Other Columns -> Đổi tên Attribute thành 'Thang', Value thành 'DoanhThu'.\n4. Home -> Close & Load (hoặc Close & Load To -> Only Create Connection để đưa vào Data Model).",
+    "result": "Dữ liệu chuyển thành dạng bảng dọc chuẩn (Tabular) sạch sẽ, sẵn sàng đưa vào Pivot Table hoặc Power Pivot."
+  },
+  {
+    "cat": "pq_guide",
+    "ver": "Power Query",
+    "badge": "Gộp & Nối bảng tự động",
+    "title": "COMBINE FILES (FOLDER), APPEND & MERGE QUERIES",
+    "syntax": "Data -> Get Data -> From File -> From Folder | Home -> Append / Merge Queries",
+    "desc": "Tự động hóa việc gom dữ liệu từ nhiều file trong thư mục, nối các bảng cùng cấu trúc theo chiều dọc (Append) hoặc ghép cột từ bảng danh mục theo khóa chung (Merge) mà không cần viết công thức VLOOKUP.",
+    "table": [
+      [
+        "Kỹ thuật",
+        "Khi nào sử dụng?",
+        "Lưu ý quan trọng"
+      ],
+      [
+        "From Folder (Combine)",
+        "Có nhiều file Excel/CSV cùng mẫu trong 1 thư mục",
+        "Nên đặt tên file/sheet thống nhất để tránh lệch cấu trúc"
+      ],
+      [
+        "Append Queries",
+        "Ghép 2 hoặc nhiều bảng cùng cột theo chiều dọc",
+        "Tương đương hàm VSTACK nhưng chạy nền và xử lý file lớn tốt hơn"
+      ],
+      [
+        "Merge Queries",
+        "Ghép cột thông tin từ bảng khác qua cột mã chung",
+        "Kiểm tra kỹ kiểu dữ liệu (Text/Number) của cột khóa trước khi nối"
+      ]
+    ],
+    "problem": "Tìm danh sách mã đơn hàng có ở bảng Giao Hàng nhưng không có ở bảng Đối Soát (tìm dữ liệu lệch/chưa đối soát):",
+    "formula": "1. Load cả 2 bảng vào Power Query (Only Create Connection).\n2. Chọn bảng GiaoHang -> Home -> Merge Queries -> chọn bảng DoiSoat -> click chọn cột MaDon ở cả 2 bảng.\n3. Ở mục Join Kind, chọn 'Left Anti (rows only in first)' -> OK -> Expand nếu cần -> Close & Load.",
+    "result": "Trả về chính xác danh sách các đơn hàng bị thiếu/lệch giữa 2 bảng chỉ sau vài cú click chuột."
+  },
+  {
+    "cat": "pp_guide",
+    "ver": "Power Pivot & DAX",
+    "badge": "Data Model & Star Schema",
+    "title": "POWER PIVOT & MÔ HÌNH STAR SCHEMA (LƯỢC ĐỒ HÌNH SAO)",
+    "syntax": "Power Pivot -> Manage -> Diagram View -> Nối khóa chính (1) tới khóa ngoại (*)",
+    "desc": "Power Pivot cho phép lưu trữ và xử lý hàng triệu dòng dữ liệu bằng công cụ nén VertiPaq trong bộ nhớ RAM, kết nối nhiều bảng thành một Data Model thống nhất thay vì dồn tất cả vào 1 sheet khổng lồ hay dùng hàng trăm nghìn công thức VLOOKUP.",
+    "table": [
+      [
+        "Loại bảng",
+        "Đặc điểm nhận dạng",
+        "Ví dụ thực tế"
+      ],
+      [
+        "Fact Table (Bảng sự kiện/giao dịch)",
+        "Chứa số liệu phát sinh theo thời gian, khóa ngoại có thể lặp lại",
+        "Fact_BanHang, Fact_XuatKho, Fact_VanChuyen"
+      ],
+      [
+        "Dim Table (Bảng danh mục/chiều)",
+        "Chứa thông tin mô tả, khóa chính phải duy nhất (không trùng)",
+        "Dim_SanPham, Dim_KhachHang, Dim_Kho, Dim_Date"
+      ],
+      [
+        "Quan hệ 1 - Nhiều (1:*)",
+        "Một dòng ở Dim khớp với nhiều dòng ở Fact",
+        "1 Mã Sản Phẩm (Dim) -> Nhiều dòng bán hàng (Fact)"
+      ]
+    ],
+    "problem": "Thiết kế mô hình dữ liệu chuẩn để phân tích doanh thu theo Sản Phẩm, Khu Vực và Thời Gian mượt mà:",
+    "formula": "1. Đưa các bảng Fact và Dim vào Data Model (tích chọn 'Add this data to the Data Model' khi Load từ Power Query).\n2. Vào tab Power Pivot -> Manage -> chuyển sang Diagram View.\n3. Kéo từ khóa chính (VD: MaSP ở Dim_SanPham) thả vào khóa ngoại (MaSP ở Fact_BanHang).\n4. Đảm bảo chiều mũi tên lọc đi từ Dim (1) xuống Fact (*).",
+    "result": "File Excel nhẹ hơn nhiều, kết nối đa bảng linh hoạt và làm nền tảng để viết các công thức Measure DAX chuẩn xác."
+  },
+  {
+    "cat": "pp_guide",
+    "ver": "Power Pivot & DAX",
+    "badge": "DAX Measures & Time Int.",
+    "title": "VIẾT MEASURE DAX: CALCULATE, SUMX & TIME INTELLIGENCE",
+    "syntax": "Tên_Measure := CALCULATE([Measure_Gốc], Bộ_Lọc_1, Bộ_Lọc_2, ...)",
+    "desc": "DAX (Data Analysis Expressions) là ngôn ngữ tính toán của Power Pivot. Khác với Calculated Column tính từng dòng và tốn dung lượng, Measure chỉ tính toán động khi bạn kéo vào Pivot Table dựa trên ngữ cảnh lọc hiện tại.",
+    "table": [
+      [
+        "Công thức / Khái niệm DAX",
+        "Cú pháp mẫu",
+        "Ý nghĩa thực tế"
+      ],
+      [
+        "Measure tổng cơ bản",
+        "Tong_DT := SUM(Fact_BanHang[ThanhTien])",
+        "Tính tổng thành tiền theo ngữ cảnh Pivot"
+      ],
+      [
+        "CALCULATE",
+        "DT_Online := CALCULATE([Tong_DT], Dim_Kenh[Kenh]=\"Online\")",
+        "Ghi đè bộ lọc để tính riêng doanh thu Online"
+      ],
+      [
+        "SUMX (Iterator)",
+        "Tong_Tien_X := SUMX(Fact_BanHang, Fact_BanHang[SL]*Fact_BanHang[DonGia])",
+        "Nhân từng dòng rồi cộng tổng, không cần tạo cột phụ"
+      ],
+      [
+        "SAMEPERIODLASTYEAR",
+        "DT_CungKy := CALCULATE([Tong_DT], SAMEPERIODLASTYEAR(Dim_Date[Date]))",
+        "Lấy doanh thu cùng kỳ năm ngoái (cần bảng Dim_Date chuẩn)"
+      ]
+    ],
+    "problem": "Tính tỷ trọng doanh thu kênh Online trên tổng doanh thu và tính tăng trưởng so với cùng kỳ năm trước (YoY):",
+    "formula": "1. DT_Online := CALCULATE([Tong_DT], Dim_Kenh[TenKenh]=\"Online\")\n2. TyTrong_Online := DIVIDE([DT_Online], [Tong_DT], 0)\n3. DT_NamTruoc := CALCULATE([Tong_DT], SAMEPERIODLASTYEAR(Dim_Date[Date]))\n4. TangTruong_YoY := DIVIDE([Tong_DT] - [DT_NamTruoc], [DT_NamTruoc], 0)",
+    "result": "Bộ chỉ số KPI động tự tính toán chính xác theo mọi góc nhìn lọc trên Pivot Table, an toàn khi chia cho 0 nhờ hàm DIVIDE."
   }
 ]
 </script>
@@ -791,7 +1271,7 @@
 <script>
 (function() {
     var dataEl = document.getElementById('excelDataJson');
-    var excelFunctions = JSON.parse(dataEl.textContent);
+    var allData = JSON.parse(dataEl.textContent);
 
     var contentList = document.getElementById('contentList');
     var searchInput = document.getElementById('searchInput');
@@ -839,6 +1319,8 @@
 
     function buildTable(rows) {
         if (!rows || rows.length === 0) return null;
+        var wrapper = document.createElement('div');
+        wrapper.className = 'table-scroll';
         var table = document.createElement('table');
         table.className = 'mini-table';
         for (var i = 0; i < rows.length; i++) {
@@ -850,36 +1332,53 @@
             }
             table.appendChild(tr);
         }
-        return table;
+        wrapper.appendChild(table);
+        return wrapper;
+    }
+
+    function getVersionTagClass(ver) {
+        if (ver.indexOf('365') !== -1) return 'tag-365';
+        if (ver.indexOf('2010') !== -1 || ver.indexOf('2016') !== -1) return 'tag-legacy';
+        return 'tag-bi';
+    }
+
+    function isGuideItem(cat) {
+        return cat === 'pivot_guide' || cat === 'pq_guide' || cat === 'pp_guide';
     }
 
     function renderCards() {
         var keyword = searchInput.value.toLowerCase().trim();
         contentList.innerHTML = '';
 
-        var filtered = excelFunctions.filter(function(item) {
+        var filtered = allData.filter(function(item) {
             var matchCat = (currentCategory === 'all') || (item.cat === currentCategory);
             if (!matchCat) return false;
             if (!keyword) return true;
 
+            var tableText = item.table ? JSON.stringify(item.table) : '';
             var haystack = (
                 item.title + ' ' +
+                item.ver + ' ' +
                 item.badge + ' ' +
                 item.desc + ' ' +
                 item.syntax + ' ' +
                 item.problem + ' ' +
                 item.formula + ' ' +
-                item.result
+                item.result + ' ' +
+                tableText
             ).toLowerCase();
             return haystack.indexOf(keyword) !== -1;
         });
 
-        itemCount.textContent = filtered.length + ' hàm';
+        var isFuncOnly = filtered.every(function(it) { return !isGuideItem(it.cat); });
+        var isGuideOnly = filtered.every(function(it) { return isGuideItem(it.cat); });
+        var unitLabel = isFuncOnly ? ' hàm' : (isGuideOnly ? ' bài' : ' mục');
+        itemCount.textContent = filtered.length + unitLabel;
 
         if (filtered.length === 0) {
             var empty = document.createElement('div');
             empty.className = 'empty-msg';
-            empty.textContent = 'Không tìm thấy hàm phù hợp với từ khóa.';
+            empty.textContent = 'Không tìm thấy nội dung phù hợp với từ khóa.';
             contentList.appendChild(empty);
             return;
         }
@@ -901,10 +1400,10 @@
                 titleEl.textContent = item.title;
                 titleGroup.appendChild(titleEl);
 
-                var tag365 = document.createElement('span');
-                tag365.className = 'tag-365';
-                tag365.textContent = 'Excel 365';
-                titleGroup.appendChild(tag365);
+                var verTag = document.createElement('span');
+                verTag.className = getVersionTagClass(item.ver);
+                verTag.textContent = item.ver;
+                titleGroup.appendChild(verTag);
 
                 var badgeEl = document.createElement('span');
                 badgeEl.className = 'badge';
@@ -913,7 +1412,7 @@
                 header.appendChild(titleGroup);
                 header.appendChild(badgeEl);
 
-                // Syntax
+                // Syntax / Path
                 var syntaxWrapper = document.createElement('div');
                 syntaxWrapper.className = 'syntax-wrapper';
 
@@ -936,13 +1435,13 @@
                 descEl.className = 'desc';
                 descEl.textContent = item.desc;
 
-                // Example Box
+                // Example / Guide Box
                 var exBox = document.createElement('div');
                 exBox.className = 'example-box';
 
                 var exLabel = document.createElement('span');
                 exLabel.className = 'example-label';
-                exLabel.textContent = '💡 Ví dụ nâng cao';
+                exLabel.textContent = isGuideItem(item.cat) ? '📘 Hướng dẫn chi tiết & Thực hành' : '💡 Ví dụ & Công thức áp dụng';
                 exBox.appendChild(exLabel);
 
                 var tableEl = buildTable(item.table);
@@ -951,7 +1450,7 @@
                 var probEl = document.createElement('div');
                 probEl.className = 'problem-text';
                 var probStrong = document.createElement('strong');
-                probStrong.textContent = 'Bài toán: ';
+                probStrong.textContent = isGuideItem(item.cat) ? 'Tình huống / Mục tiêu: ' : 'Bài toán: ';
                 probEl.appendChild(probStrong);
                 probEl.appendChild(document.createTextNode(item.problem));
                 exBox.appendChild(probEl);
@@ -972,7 +1471,7 @@
                 var resEl = document.createElement('div');
                 resEl.className = 'result-text';
                 var resStrong = document.createElement('strong');
-                resStrong.textContent = 'Kết quả: ';
+                resStrong.textContent = 'Kết quả đạt được: ';
                 resEl.appendChild(resStrong);
                 resEl.appendChild(document.createTextNode(item.result));
                 exBox.appendChild(resEl);
