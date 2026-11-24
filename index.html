@@ -3,34 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Sổ Tay Hàm Excel 365 Pro</title>
+    <title>Sổ Tay Toàn Bộ Hàm Excel 365 Pro</title>
     <style>
         :root {
             --primary: #107c41;
             --primary-dark: #0b5c30;
             --primary-light: #e6f4ea;
-            --accent: #0284c7;
+            --accent: #0369a1;
             --accent-light: #e0f2fe;
-            --bg: #f3f4f6;
+            --bg: #f1f5f9;
             --card-bg: #ffffff;
-            --text: #1f2937;
-            --border: #e5e7eb;
+            --text: #1e293b;
+            --text-sub: #475569;
+            --border: #e2e8f0;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-        body { background-color: var(--bg); color: var(--text); padding-bottom: 40px; }
-        
+        body { background-color: var(--bg); color: var(--text); padding-bottom: 48px; }
+
         header {
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: white;
+            color: #ffffff;
             padding: 16px;
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
         }
-        header h1 { font-size: 1.18rem; margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between; }
-        .count-badge { font-size: 0.75rem; background: rgba(255,255,255,0.22); padding: 3px 10px; border-radius: 12px; font-weight: 600; }
-        
+        .header-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        header h1 { font-size: 1.15rem; font-weight: 700; }
+        .count-badge {
+            font-size: 0.75rem;
+            background: rgba(255,255,255,0.22);
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-weight: 600;
+        }
         .search-box {
             width: 100%;
             padding: 10px 14px;
@@ -38,14 +50,14 @@
             border: none;
             font-size: 0.95rem;
             outline: none;
-            background: rgba(255,255,255,0.96);
-            color: #111827;
+            background: #ffffff;
+            color: #0f172a;
         }
 
         .tabs {
             display: flex;
             overflow-x: auto;
-            background: white;
+            background: #ffffff;
             padding: 10px 12px;
             gap: 8px;
             border-bottom: 1px solid var(--border);
@@ -56,30 +68,31 @@
         }
         .tabs::-webkit-scrollbar { display: none; }
         .tab-btn {
-            padding: 7px 13px;
-            border-radius: 20px;
+            padding: 7px 14px;
+            border-radius: 999px;
             border: 1px solid var(--border);
             background: var(--bg);
-            color: var(--text);
+            color: var(--text-sub);
             font-size: 0.82rem;
             font-weight: 600;
             white-space: nowrap;
             cursor: pointer;
+            transition: all 0.15s ease;
         }
         .tab-btn.active {
             background: var(--primary);
-            color: white;
+            color: #ffffff;
             border-color: var(--primary);
         }
 
-        .container { padding: 12px; max-width: 820px; margin: 0 auto; }
+        .container { padding: 12px; max-width: 860px; margin: 0 auto; }
         .card {
             background: var(--card-bg);
             border-radius: 12px;
-            padding: 15px;
+            padding: 16px;
             margin-bottom: 14px;
             border: 1px solid var(--border);
-            box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
         }
         .card-header {
             display: flex;
@@ -89,36 +102,37 @@
             margin-bottom: 8px;
             flex-wrap: wrap;
         }
-        .title-group { display: flex; align-items: center; gap: 8px; }
+        .title-group { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
         .card-title { font-size: 1.08rem; font-weight: 800; color: var(--primary-dark); }
         .tag-365 {
             font-size: 0.68rem;
-            padding: 2px 6px;
+            padding: 2px 7px;
             border-radius: 4px;
             background: var(--accent-light);
             color: var(--accent);
             font-weight: 700;
-            border: 1px solid #bae6fd;
         }
         .badge {
             font-size: 0.72rem;
-            padding: 3px 8px;
+            padding: 3px 9px;
             border-radius: 6px;
             background: var(--primary-light);
             color: var(--primary-dark);
             font-weight: 600;
         }
+
         .syntax-wrapper {
             position: relative;
-            background: #f1f5f9;
-            padding: 10px 62px 10px 10px;
+            background: #f8fafc;
+            padding: 10px 66px 10px 10px;
             border-radius: 6px;
             margin: 8px 0;
+            border: 1px solid #e2e8f0;
             border-left: 3px solid var(--primary);
         }
         .syntax {
-            font-family: monospace;
-            font-size: 0.82rem;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            font-size: 0.81rem;
             color: #0f172a;
             white-space: pre-wrap;
             word-break: break-word;
@@ -128,314 +142,865 @@
             right: 6px;
             top: 50%;
             transform: translateY(-50%);
-            background: white;
+            background: #ffffff;
             border: 1px solid #cbd5e1;
-            border-radius: 4px;
-            padding: 4px 8px;
+            border-radius: 5px;
+            padding: 4px 9px;
             font-size: 0.72rem;
             font-weight: 600;
             color: #334155;
             cursor: pointer;
         }
         .desc { font-size: 0.9rem; line-height: 1.5; color: var(--text); margin-bottom: 10px; }
-        
+
         .example-box {
-            background: #f9fafb;
-            border: 1px solid #e5e7eb;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
             border-radius: 8px;
-            padding: 10px 12px;
+            padding: 11px 12px;
             font-size: 0.84rem;
         }
         .example-label {
             font-weight: 700;
-            color: #111827;
+            color: #0f172a;
             margin-bottom: 6px;
             display: block;
-            font-size: 0.78rem;
+            font-size: 0.76rem;
             text-transform: uppercase;
+            letter-spacing: 0.4px;
         }
         .mini-table {
             width: 100%;
             border-collapse: collapse;
             margin: 6px 0 8px 0;
-            font-size: 0.79rem;
-            background: white;
+            font-size: 0.78rem;
+            background: #ffffff;
         }
         .mini-table th, .mini-table td {
-            border: 1px solid #d1d5db;
+            border: 1px solid #cbd5e1;
             padding: 5px 7px;
             text-align: left;
         }
-        .mini-table th { background: #e5e7eb; font-weight: 600; }
+        .mini-table th { background: #e2e8f0; font-weight: 600; color: #1e293b; }
+        .problem-text { margin-bottom: 6px; line-height: 1.45; }
         .formula-demo {
-            font-family: monospace;
+            position: relative;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
             background: #ecfdf5;
             color: #065f46;
-            padding: 7px 9px;
-            border-radius: 5px;
+            padding: 8px 66px 8px 9px;
+            border-radius: 6px;
             border: 1px dashed #6ee7b7;
             margin-top: 6px;
             line-height: 1.45;
-            font-size: 0.82rem;
+            font-size: 0.81rem;
+            word-break: break-word;
+        }
+        .result-text {
+            margin-top: 6px;
+            color: #334155;
+            font-size: 0.83rem;
+            line-height: 1.45;
+        }
+        .empty-msg {
+            text-align: center;
+            color: #64748b;
+            margin-top: 32px;
+            font-size: 0.95rem;
         }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>
-        <span>📗 Sổ Tay Hàm Excel 365</span>
-        <span class="count-badge" id="itemCount">15 hàm</span>
-    </h1>
-    <input type="text" id="searchInput" class="search-box" placeholder="Tìm tên hàm (XLOOKUP, GROUPBY, LET, TEXTSPLIT...)">
+    <div class="header-top">
+        <h1>📗 Hàm Mới Excel 365 Pro</h1>
+        <span class="count-badge" id="itemCount">24 hàm</span>
+    </div>
+    <input type="text" id="searchInput" class="search-box" placeholder="Tìm tên hàm, công dụng, ví dụ (XLOOKUP, GROUPBY, SCAN...)">
 </header>
 
 <div class="tabs" id="categoryTabs">
-    <button class="tab-btn active" data-cat="all">Tất cả</button>
-    <button class="tab-btn" data-cat="lookup">Tra cứu & Mảng động</button>
+    <button class="tab-btn active" data-cat="all">Tất cả (24)</button>
+    <button class="tab-btn" data-cat="lookup">Tra cứu</button>
+    <button class="tab-btn" data-cat="array">Mảng động</button>
     <button class="tab-btn" data-cat="text">Xử lý Chuỗi</button>
-    <button class="tab-btn" data-cat="reshape">Gộp & Xoay Bảng</button>
+    <button class="tab-btn" data-cat="reshape">Tổng hợp & Xoay bảng</button>
     <button class="tab-btn" data-cat="lambda">LET & LAMBDA</button>
-    <button class="tab-btn" data-cat="classic">Hàm Nền Tảng</button>
 </div>
 
 <div class="container" id="contentList"></div>
 
+<script id="excelDataJson" type="application/json">
+[
+  {
+    "cat": "lookup",
+    "badge": "Tra cứu 2 chiều",
+    "title": "XLOOKUP",
+    "syntax": "=XLOOKUP(lookup_value, lookup_array, return_array, [if_not_found], [match_mode], [search_mode])",
+    "desc": "Thay thế toàn diện VLOOKUP/HLOOKUP/INDEX-MATCH. Hỗ trợ tìm từ phải sang trái, tìm giá trị gần nhất và tìm ngược từ dưới lên.",
+    "table": [
+      [
+        "Mã Hàng",
+        "Ngày Nhập",
+        "Kho",
+        "Đơn Giá"
+      ],
+      [
+        "VT-01",
+        "01/10/2026",
+        "Bình Định",
+        "120.000"
+      ],
+      [
+        "VT-02",
+        "05/10/2026",
+        "Đà Nẵng",
+        "85.000"
+      ],
+      [
+        "VT-01",
+        "20/11/2026",
+        "Bình Định",
+        "135.000"
+      ]
+    ],
+    "problem": "Tìm Đơn Giá nhập gần nhất (dòng cuối cùng) của mã VT-01 tại kho Bình Định (kết hợp nhiều điều kiện & tìm ngược từ dưới lên).",
+    "formula": "=XLOOKUP(1, (A2:A4=\"VT-01\")*(C2:C4=\"Bình Định\"), D2:D4, \"Không có\", 0, -1)",
+    "result": "135.000 (Tự động ghép 2 điều kiện bằng dấu * và quét từ dưới lên nhờ tham số -1)."
+  },
+  {
+    "cat": "lookup",
+    "badge": "Vị trí động",
+    "title": "XMATCH",
+    "syntax": "=XMATCH(lookup_value, lookup_array, [match_mode], [search_mode])",
+    "desc": "Trả về vị trí tương đối của một mục trong mảng. Mặc định khớp chính xác, hỗ trợ tìm ký tự đại diện (*, ?) và tìm từ cuối lên.",
+    "table": [
+      [
+        "Tháng 8",
+        "Tháng 9",
+        "Tháng 10",
+        "Tháng 11",
+        "Tháng 12"
+      ],
+      [
+        "450",
+        "510",
+        "490",
+        "620",
+        "0"
+      ]
+    ],
+    "problem": "Tìm vị trí cột của tháng gần nhất có phát sinh doanh số (>0) từ phải sang trái.",
+    "formula": "=XMATCH(TRUE, B2:F2>0, 0, -1)",
+    "result": "4 (Xác định ngay cột thứ 4 là Tháng 11 có doanh số 620, bỏ qua Tháng 12 bằng 0)."
+  },
+  {
+    "cat": "lookup",
+    "badge": "Lấy ảnh / Dữ liệu",
+    "title": "IMAGE",
+    "syntax": "=IMAGE(source, [alt_text], [sizing], [height], [width])",
+    "desc": "Chèn trực tiếp hình ảnh từ đường dẫn URL (HTTPS) vào bên trong ô Excel, có thể dùng chung với XLOOKUP để làm bảng tra cứu hình ảnh sản phẩm.",
+    "table": [
+      [
+        "Mã SP",
+        "Link Ảnh",
+        "Tên Sản Phẩm"
+      ],
+      [
+        "SP01",
+        "https://example.com/sua.png",
+        "Sữa tươi 1L"
+      ]
+    ],
+    "problem": "Hiển thị hình ảnh sản phẩm tự động khi chọn mã SP01 ở ô E2.",
+    "formula": "=IMAGE(XLOOKUP(E2, A2:A10, B2:B10), \"Ảnh SP\", 0)",
+    "result": "Ảnh sản phẩm hiển thị gọn bên trong ô và tự co giãn theo kích thước ô."
+  },
+  {
+    "cat": "array",
+    "badge": "Lọc đa điều kiện",
+    "title": "FILTER",
+    "syntax": "=FILTER(array, include, [if_empty])",
+    "desc": "Trích xuất toàn bộ các dòng thỏa mãn điều kiện phức tạp (AND dùng dấu *, OR dùng dấu +) và tự động cập nhật khi dữ liệu nguồn thay đổi.",
+    "table": [
+      [
+        "Tài Xế",
+        "Tuyến",
+        "Trạng Thái",
+        "Doanh Thu"
+      ],
+      [
+        "Minh",
+        "Quy Nhơn",
+        "Hoàn thành",
+        "4.500.000"
+      ],
+      [
+        "Hùng",
+        "Pleiku",
+        "Hủy",
+        "1.200.000"
+      ],
+      [
+        "Tuấn",
+        "Đà Nẵng",
+        "Hoàn thành",
+        "5.800.000"
+      ]
+    ],
+    "problem": "Lọc các chuyến đi đã 'Hoàn thành' thuộc tuyến 'Quy Nhơn' HOẶC 'Đà Nẵng' có doanh thu trên 4 triệu.",
+    "formula": "=FILTER(A2:D4, (C2:C4=\"Hoàn thành\")*((B2:B4=\"Quy Nhơn\")+(B2:B4=\"Đà Nẵng\"))*(D2:D4>4000000), \"Trống\")",
+    "result": "Trả về 2 dòng của Minh và Tuấn; tự động loại bỏ chuyến bị Hủy của Hùng."
+  },
+  {
+    "cat": "array",
+    "badge": "Lọc duy nhất",
+    "title": "UNIQUE",
+    "syntax": "=UNIQUE(array, [by_col], [exactly_once])",
+    "desc": "Lấy danh sách các giá trị không trùng lặp. Tham số thứ 3 (TRUE) giúp lọc riêng những giá trị chỉ xuất hiện đúng 1 lần duy nhất.",
+    "table": [
+      [
+        "Mã Đơn Hàng"
+      ],
+      [
+        "DH-101"
+      ],
+      [
+        "DH-102"
+      ],
+      [
+        "DH-101"
+      ],
+      [
+        "DH-103"
+      ]
+    ],
+    "problem": "Tìm danh sách các mã đơn hàng chỉ xuất hiện duy nhất 1 lần (không bị nhập trùng).",
+    "formula": "=UNIQUE(A2:A5, FALSE, TRUE)",
+    "result": "DH-102 và DH-103 (Tự động loại bỏ DH-101 vì xuất hiện 2 lần)."
+  },
+  {
+    "cat": "array",
+    "badge": "Sắp xếp đa cấp",
+    "title": "SORT & SORTBY",
+    "syntax": "=SORTBY(array, by_array1, [sort_order1], [by_array2, sort_order2], ...)",
+    "desc": "SORTBY sắp xếp một bảng dữ liệu dựa trên một hoặc nhiều cột khác (kể cả cột không nằm trong vùng kết quả trả về).",
+    "table": [
+      [
+        "Nhân Viên",
+        "Khu Vực",
+        "Doanh Số"
+      ],
+      [
+        "An",
+        "Bình Định",
+        "850"
+      ],
+      [
+        "Bình",
+        "Bình Định",
+        "920"
+      ],
+      [
+        "Cường",
+        "An Nhơn",
+        "780"
+      ]
+    ],
+    "problem": "Sắp xếp danh sách theo Khu Vực tăng dần (A-Z), sau đó xếp theo Doanh Số giảm dần (-1).",
+    "formula": "=SORTBY(A2:C4, B2:B4, 1, C2:C4, -1)",
+    "result": "Cường (An Nhơn) -> Bình (Bình Định, 920) -> An (Bình Định, 850)."
+  },
+  {
+    "cat": "array",
+    "badge": "Tạo chuỗi số/ngày",
+    "title": "SEQUENCE",
+    "syntax": "=SEQUENCE(rows, [columns], [start], [step])",
+    "desc": "Sinh mảng số tự động theo số dòng và cột chỉ định. Rất mạnh khi kết hợp với ngày tháng để tạo lịch làm việc hoặc bảng phân bổ.",
+    "table": [
+      [
+        "Ngày Bắt Đầu",
+        "Số Ngày"
+      ],
+      [
+        "01/12/2026",
+        "5"
+      ]
+    ],
+    "problem": "Tạo tự động danh sách 5 ngày làm việc liên tiếp tính từ ô A2.",
+    "formula": "=TEXT(SEQUENCE(B2, 1, A2, 1), \"dd/mm/yyyy\")",
+    "result": "Đổ tự động 5 dòng: 01/12/2026 đến 05/12/2026."
+  },
+  {
+    "cat": "array",
+    "badge": "Mảng ngẫu nhiên",
+    "title": "RANDARRAY",
+    "syntax": "=RANDARRAY([rows], [columns], [min], [max], [whole_number])",
+    "desc": "Tạo một bảng dữ liệu số ngẫu nhiên (số nguyên hoặc số thập phân) phục vụ giả lập dữ liệu test hoặc chọn mẫu ngẫu nhiên.",
+    "table": [
+      [
+        "Danh Sách Nhân Viên (A2:A20)"
+      ]
+    ],
+    "problem": "Chọn ngẫu nhiên 3 nhân viên từ danh sách 19 người để kiểm tra chéo.",
+    "formula": "=INDEX(A2:A20, RANDARRAY(3, 1, 1, 19, TRUE))",
+    "result": "Trả về ngẫu nhiên 3 tên nhân viên trong danh sách."
+  },
+  {
+    "cat": "text",
+    "badge": "Tách chuỗi động",
+    "title": "TEXTSPLIT",
+    "syntax": "=TEXTSPLIT(text, col_delimiter, [row_delimiter], [ignore_empty], [match_mode], [pad_with])",
+    "desc": "Tách một chuỗi thành nhiều cột VÀ nhiều dòng cùng lúc dựa trên ký tự phân cách, thay thế hoàn toàn công cụ Text to Columns.",
+    "table": [
+      [
+        "Chuỗi Dữ Liệu Gốc (Ô A2)"
+      ],
+      [
+        "SP01:10; SP02:25; SP03:15"
+      ]
+    ],
+    "problem": "Tách chuỗi đơn hàng gộp trong 1 ô thành bảng 2 cột (Mã SP và Số lượng) và 3 dòng.",
+    "formula": "=TEXTSPLIT(TRIM(A2), \":\", \"; \", TRUE)",
+    "result": "Tạo bảng 3 dòng x 2 cột: [SP01 | 10], [SP02 | 25], [SP03 | 15]."
+  },
+  {
+    "cat": "text",
+    "badge": "Cắt chuỗi thông minh",
+    "title": "TEXTBEFORE & TEXTAFTER",
+    "syntax": "=TEXTBEFORE(text, delimiter, [instance_num], [match_mode], [match_end], [if_not_found])",
+    "desc": "Trích xuất chuỗi nằm trước hoặc sau ký tự phân cách thứ N. Hỗ trợ số âm (-1) để đếm từ cuối chuỗi lên mà không cần dùng LEFT/RIGHT/FIND phức tạp.",
+    "table": [
+      [
+        "Mã Vận Đơn (Ô A2)"
+      ],
+      [
+        "VN-BDH-2026-889412"
+      ]
+    ],
+    "problem": "Lấy mã tỉnh nằm giữa dấu gạch ngang thứ 1 và thứ 2 ('BDH') và số phiếu cuối cùng ('889412').",
+    "formula": "Mã tỉnh: =TEXTBEFORE(TEXTAFTER(A2, \"-\", 1), \"-\") | Số phiếu: =TEXTAFTER(A2, \"-\", -1)",
+    "result": "Mã tỉnh trả về 'BDH'; Số phiếu trả về '889412'."
+  },
+  {
+    "cat": "text",
+    "badge": "Nối chuỗi bỏ trống",
+    "title": "TEXTJOIN",
+    "syntax": "=TEXTJOIN(delimiter, ignore_empty, text1, [text2], ...)",
+    "desc": "Gộp nhiều giá trị thành một chuỗi có dấu phân cách, tự động bỏ qua ô trống. Khi kết hợp với IF/FILTER giúp gộp danh sách theo điều kiện.",
+    "table": [
+      [
+        "Tuyến",
+        "Mã Xe"
+      ],
+      [
+        "Tuyến 1",
+        "77C-123.45"
+      ],
+      [
+        "Tuyến 2",
+        "77C-678.90"
+      ],
+      [
+        "Tuyến 1",
+        "77C-999.99"
+      ]
+    ],
+    "problem": "Gom tất cả biển số xe chạy 'Tuyến 1' vào chung 1 ô, ngăn cách bởi dấu phẩy.",
+    "formula": "=TEXTJOIN(\", \", TRUE, FILTER(B2:B4, A2:A4=\"Tuyến 1\"))",
+    "result": "77C-123.45, 77C-999.99"
+  },
+  {
+    "cat": "text",
+    "badge": "Chuyển số / Regex",
+    "title": "VALUETOTEXT & ARRAYTOTEXT",
+    "syntax": "=ARRAYTOTEXT(array, [format])",
+    "desc": "Chuyển đổi toàn bộ một bảng hoặc vùng dữ liệu mảng thành một chuỗi văn bản duy nhất (format = 0: gọn gàng; format = 1: dạng mảng chuẩn Excel).",
+    "table": [
+      [
+        "A1:B2"
+      ],
+      [
+        "Tên",
+        "Tuổi"
+      ],
+      [
+        "Nam",
+        "30"
+      ]
+    ],
+    "problem": "Xuất nhanh vùng dữ liệu A1:B2 thành chuỗi văn bản để lưu log hoặc gửi qua API.",
+    "formula": "=ARRAYTOTEXT(A1:B2, 0)",
+    "result": "Tên, Tuổi, Nam, 30"
+  },
+  {
+    "cat": "reshape",
+    "badge": "Thay Pivot Table",
+    "title": "GROUPBY",
+    "syntax": "=GROUPBY(row_fields, values, function, [field_headers], [total_depth], [sort_order], [filter_array])",
+    "desc": "Hàm đột phá nhất của Excel 365: Tạo bảng tổng hợp nhóm dữ liệu giống Pivot Table bằng công thức động, tự động cập nhật ngay lập tức mà không cần Refresh.",
+    "table": [
+      [
+        "Kho",
+        "Nhóm Hàng",
+        "Doanh Thu"
+      ],
+      [
+        "Quy Nhơn",
+        "Sữa nước",
+        "500"
+      ],
+      [
+        "Quy Nhơn",
+        "Sữa chua",
+        "300"
+      ],
+      [
+        "An Nhơn",
+        "Sữa nước",
+        "450"
+      ]
+    ],
+    "problem": "Tổng hợp Doanh Thu theo Kho và Nhóm Hàng, hiện tiêu đề, có dòng Tổng cộng và sắp xếp giảm dần theo doanh thu.",
+    "formula": "=GROUPBY(A1:B4, C1:C4, SUM, 3, 1, -3)",
+    "result": "Tự động tạo bảng tổng hợp 3 cột đầy đủ tiêu đề, sắp xếp doanh thu cao nhất lên đầu và tính Grand Total."
+  },
+  {
+    "cat": "reshape",
+    "badge": "Pivot 2 chiều động",
+    "title": "PIVOTBY",
+    "syntax": "=PIVOTBY(row_fields, col_fields, values, function, [field_headers], [row_total_depth], [row_sort_order], [col_total_depth])",
+    "desc": "Tạo báo cáo xoay chiều ma trận (cả dòng và cột) bằng công thức thuần túy, hỗ trợ tính phần trăm tỷ trọng (PERCENTOF).",
+    "table": [
+      [
+        "Kho",
+        "Tháng",
+        "Chi Phí"
+      ],
+      [
+        "Quy Nhơn",
+        "T10",
+        "120"
+      ],
+      [
+        "An Nhơn",
+        "T11",
+        "150"
+      ]
+    ],
+    "problem": "Tạo bảng ma trận Kho (dòng) x Tháng (cột) tính tỷ trọng % chi phí trên tổng toàn công ty.",
+    "formula": "=PIVOTBY(A1:A3, B1:B3, C1:C3, PERCENTOF, 3, 1)",
+    "result": "Bảng ma trận 2 chiều hiển thị tỷ lệ % đóng góp của từng kho qua từng tháng."
+  },
+  {
+    "cat": "reshape",
+    "badge": "Gộp nhiều Sheet",
+    "title": "VSTACK & HSTACK",
+    "syntax": "=VSTACK(array1, [array2], ...) | =HSTACK(array1, [array2], ...)",
+    "desc": "VSTACK nối chồng nhiều bảng dữ liệu từ các Sheet khác nhau theo chiều dọc (hỗ trợ tham chiếu 3D). HSTACK ghép nối các bảng theo chiều ngang.",
+    "table": [
+      [
+        "Sheet T10 (A2:D50)",
+        "Sheet T11 (A2:D50)",
+        "Sheet T12 (A2:D50)"
+      ]
+    ],
+    "problem": "Gộp dữ liệu từ 3 sheet T10 đến T12 thành một bảng tổng hợp duy nhất và loại bỏ các dòng trống.",
+    "formula": "=LET(tong, VSTACK(T10:T12!A2:D50), FILTER(tong, INDEX(tong,,1)<>\"\"))",
+    "result": "Gộp toàn bộ dữ liệu 3 quý/tháng thành 1 bảng sạch không có dòng trống ở giữa."
+  },
+  {
+    "cat": "reshape",
+    "badge": "Chuyển đổi 1D <-> 2D",
+    "title": "TOCOL, TOROW, WRAPROWS, WRAPCOLS",
+    "syntax": "=TOCOL(array, [ignore], [scan_by_column]) | =WRAPROWS(vector, wrap_count, [pad_with])",
+    "desc": "TOCOL/TOROW duỗi phẳng bảng 2 chiều thành 1 cột hoặc 1 dòng (bỏ qua ô trống/lỗi). WRAPROWS/WRAPCOLS cuộn 1 danh sách dài thành bảng nhiều cột/dòng.",
+    "table": [
+      [
+        "Ca Sáng",
+        "Ca Chiều",
+        "Ca Tối"
+      ],
+      [
+        "An, Bình",
+        "Cường",
+        "(Trống)"
+      ]
+    ],
+    "problem": "Gom toàn bộ nhân viên trực ở các ca (bảng A2:C5) thành 1 danh sách dọc duy nhất, bỏ qua ô trống và loại trùng.",
+    "formula": "=UNIQUE(TOCOL(A2:C5, 1))",
+    "result": "Danh sách nhân viên trực sạch sẽ, không trùng lặp và không có ô trống."
+  },
+  {
+    "cat": "reshape",
+    "badge": "Cắt & Trích cột",
+    "title": "TAKE, DROP, CHOOSECOLS, CHOOSEROWS",
+    "syntax": "=TAKE(array, rows, [columns]) | =CHOOSECOLS(array, col_num1, [col_num2], ...)",
+    "desc": "TAKE lấy N dòng/cột đầu hoặc cuối (số âm). DROP loại bỏ N dòng/cột. CHOOSECOLS chọn lọc và đảo thứ tự các cột bất kỳ trong bảng.",
+    "table": [
+      [
+        "Cột 1: Mã",
+        "Cột 2: Tên",
+        "Cột 3: Địa chỉ",
+        "Cột 4: Doanh số"
+      ]
+    ],
+    "problem": "Lấy Top 5 khách hàng doanh số cao nhất (cột 4), nhưng chỉ hiển thị cột Tên (2) và Doanh số (4).",
+    "formula": "=TAKE(SORT(CHOOSECOLS(A2:D50, 2, 4), 2, -1), 5)",
+    "result": "Bảng báo cáo Top 5 gọn gàng chỉ gồm 2 cột cần thiết."
+  },
+  {
+    "cat": "reshape",
+    "badge": "Mở rộng mảng",
+    "title": "EXPAND",
+    "syntax": "=EXPAND(array, rows, [columns], [pad_with])",
+    "desc": "Mở rộng kích thước một mảng dữ liệu lên số dòng/cột chỉ định và tự động điền giá trị lấp đầy (pad_with) vào các ô mở rộng.",
+    "table": [
+      [
+        "Bảng A2:B3 (2 dòng x 2 cột)"
+      ]
+    ],
+    "problem": "Mở rộng bảng A2:B3 thành 5 dòng x 3 cột để khớp kích thước với bảng khác, các ô trống điền số 0.",
+    "formula": "=EXPAND(A2:B3, 5, 3, 0)",
+    "result": "Mảng mới kích thước 5x3 với giá trị 0 tự động điền vào phần mở rộng."
+  },
+  {
+    "cat": "lambda",
+    "badge": "Tối ưu hiệu năng",
+    "title": "LET",
+    "syntax": "=LET(name1, value1, [name2, value2], ..., calculation)",
+    "desc": "Đặt tên biến cho các biểu thức trung gian ngay trong công thức. Giúp Excel chỉ tính toán biểu thức đó 1 lần duy nhất thay vì tính lặp lại nhiều lần.",
+    "table": [
+      [
+        "Doanh Thu (C2:C100)",
+        "Chi Phí (D2:D100)"
+      ]
+    ],
+    "problem": "Tính tỷ suất lợi nhuận; nếu < 10% ghi 'Cảnh báo', từ 10%-20% ghi 'Đạt', trên 20% ghi 'Tốt' mà không lặp lại phép chia.",
+    "formula": "=LET(dt, SUM(C2:C100), cp, SUM(D2:D100), margin, (dt-cp)/dt, IFS(margin<0.1, \"Cảnh báo\", margin<=0.2, \"Đạt\", TRUE, \"Tốt\"))",
+    "result": "Công thức sạch, dễ đọc, tốc độ tính toán nhanh gấp 3 lần cách viết lồng ghép truyền thống."
+  },
+  {
+    "cat": "lambda",
+    "badge": "Tự tạo hàm mới",
+    "title": "LAMBDA",
+    "syntax": "=LAMBDA([parameter1, parameter2, ...], calculation)",
+    "desc": "Tạo hàm tùy chỉnh của riêng bạn (lưu trong Name Manager) mà không cần dùng VBA/Macro, hoạt động trên cả Excel Web và Mobile.",
+    "table": [
+      [
+        "Giá Chưa VAT (A2)",
+        "Thuế Suất (B2)"
+      ]
+    ],
+    "problem": "Tạo hàm tính giá sau thuế và làm tròn đến hàng nghìn: đặt tên là TINHGIA trong Name Manager.",
+    "formula": "=LAMBDA(gia, thue, ROUND(gia*(1+thue), -3))(A2, B2)",
+    "result": "Sau khi lưu vào Name Manager, chỉ cần gõ =TINHGIA(A2, B2) ở bất kỳ ô nào."
+  },
+  {
+    "cat": "lambda",
+    "badge": "Lặp từng dòng/cột",
+    "title": "BYROW & BYCOL",
+    "syntax": "=BYROW(array, LAMBDA(row, calculation)) | =BYCOL(array, LAMBDA(col, calculation))",
+    "desc": "Áp dụng một phép tính LAMBDA cho từng dòng (BYROW) hoặc từng cột (BYCOL) của mảng và trả về kết quả mảng động mà không cần kéo công thức.",
+    "table": [
+      [
+        "T1",
+        "T2",
+        "T3",
+        "T4"
+      ],
+      [
+        "100",
+        "120",
+        "90",
+        "150"
+      ],
+      [
+        "80",
+        "95",
+        "110",
+        "130"
+      ]
+    ],
+    "problem": "Tính giá trị lớn nhất của từng dòng (từ dòng 2 đến dòng 50) chỉ bằng 1 công thức duy nhất ở ô đầu tiên.",
+    "formula": "=BYROW(A2:D50, LAMBDA(r, MAX(r)))",
+    "result": "Tự động đổ kết quả Max cho toàn bộ 49 dòng bên dưới."
+  },
+  {
+    "cat": "lambda",
+    "badge": "Biến đổi từng ô",
+    "title": "MAP",
+    "syntax": "=MAP(array1, [array2], ..., LAMBDA(value1, [value2], calculation))",
+    "desc": "Quét qua từng phần tử của một hoặc nhiều mảng cùng kích thước và biến đổi từng ô theo quy tắc trong LAMBDA.",
+    "table": [
+      [
+        "Bảng Dữ Liệu (A2:D10)"
+      ]
+    ],
+    "problem": "Kiểm tra toàn bộ bảng A2:D10: ô nào nhỏ hơn 0 thì tự động chuyển thành 0, ngược lại giữ nguyên.",
+    "formula": "=MAP(A2:D10, LAMBDA(x, IF(x<0, 0, x)))",
+    "result": "Trả về mảng mới đã loại bỏ toàn bộ số âm."
+  },
+  {
+    "cat": "lambda",
+    "badge": "Tính lũy kế động",
+    "title": "SCAN & REDUCE",
+    "syntax": "=SCAN([initial_value], array, LAMBDA(accumulator, value, calculation))",
+    "desc": "SCAN tính toán lũy kế qua từng bước và trả về mảng toàn bộ các giá trị trung gian (tính tồn kho lũy kế, doanh số cộng dồn). REDUCE chỉ trả về kết quả cuối cùng.",
+    "table": [
+      [
+        "Ngày",
+        "Phát Sinh"
+      ],
+      [
+        "01/11",
+        "100"
+      ],
+      [
+        "02/11",
+        "-30"
+      ],
+      [
+        "03/11",
+        "50"
+      ]
+    ],
+    "problem": "Tính cột Tồn Kho Lũy Kế (Running Total) tự động cho cột phát sinh B2:B4.",
+    "formula": "=SCAN(0, B2:B4, LAMBDA(ton_truoc, phat_sinh, ton_truoc + phat_sinh))",
+    "result": "Đổ tự động 3 dòng tồn lũy kế: 100 -> 70 -> 120."
+  },
+  {
+    "cat": "lambda",
+    "badge": "Tạo ma trận tùy biến",
+    "title": "MAKEARRAY",
+    "syntax": "=MAKEARRAY(rows, cols, LAMBDA(row, col, calculation))",
+    "desc": "Tạo ra một mảng 2 chiều có kích thước rows x cols với giá trị tại mỗi ô được tính theo tọa độ dòng (row) và cột (col).",
+    "table": [
+      [
+        "Bảng Cửu Chương / Ma Trận 5x5"
+      ]
+    ],
+    "problem": "Tạo nhanh bảng ma trận nhân 5 dòng x 5 cột chỉ bằng một công thức.",
+    "formula": "=MAKEARRAY(5, 5, LAMBDA(r, c, r * c))",
+    "result": "Sinh ra bảng ma trận 5x5 với giá trị mỗi ô bằng chỉ số dòng nhân chỉ số cột."
+  }
+]
+</script>
+
 <script>
-const excelFunctions = [
-    {
-        cat: "lookup", is365: true, badge: "Tra cứu",
-        title: "XLOOKUP",
-        syntax: "=XLOOKUP(lookup_value, lookup_array, return_array, [if_not_found], [match_mode], [search_mode])",
-        desc: "Thay thế toàn diện VLOOKUP/HLOOKUP. Tìm kiếm 2 chiều (trái sang phải hoặc phải sang trái), mặc định khớp chính xác, hỗ trợ tìm từ dưới lên (search_mode = -1) để lấy giao dịch gần nhất.",
-        exampleHTML: '<table class="mini-table"><tr><th>A (Tên SP)</th><th>B (Mã SP)</th><th>C (Ngày)</th><th>D (Giá)</th></tr><tr><td>Sữa tươi 1L</td><td>SP01</td><td>01/11</td><td>30.000</td></tr><tr><td>Sữa tươi 1L</td><td>SP01</td><td>20/11</td><td>32.000</td></tr></table><div><b>Bài toán:</b> Lấy <b>Giá nhập mới nhất</b> (tìm từ dưới lên) của mã <b>SP01</b>:</div><div class="formula-demo"><b>Công thức:</b> =XLOOKUP("SP01", B2:B3, D2:D3, "Không thấy", 0, -1)<br><b>Kết quả:</b> 32.000 (Lấy dòng cuối cùng khớp mã SP01)</div>'
-    },
-    {
-        cat: "lookup", is365: true, badge: "Tra cứu",
-        title: "XMATCH",
-        syntax: "=XMATCH(lookup_value, lookup_array, [match_mode], [search_mode])",
-        desc: "Bản nâng cấp của hàm MATCH. Trả về vị trí (số thứ tự) của giá trị trong mảng, mặc định khớp chính xác và hỗ trợ tìm ngược từ cuối lên.",
-        exampleHTML: '<div><b>Bài toán:</b> Tìm vị trí cột của chữ <b>"Tháng 11"</b> trong tiêu đề <code>A1:L1</code>:</div><div class="formula-demo"><b>Công thức:</b> =XMATCH("Tháng 11", A1:L1)<br><b>Kết quả:</b> 11 (Không cần tham số 0 ở cuối như hàm MATCH cũ)</div>'
-    },
-    {
-        cat: "lookup", is365: true, badge: "Mảng động",
-        title: "FILTER",
-        syntax: "=FILTER(array, include, [if_empty])",
-        desc: "Lọc dữ liệu theo nhiều điều kiện (dùng dấu * cho điều kiện VÀ, dấu + cho điều kiện HOẶC) và tự động đổ mảng kết quả ra nhiều dòng.",
-        exampleHTML: '<table class="mini-table"><tr><th>A (Tài xế)</th><th>B (Tuyến)</th><th>C (Số chuyến)</th></tr><tr><td>Hùng</td><td>Quy Nhơn</td><td>18</td></tr><tr><td>Nam</td><td>Đà Nẵng</td><td>22</td></tr><tr><td>Tuấn</td><td>Quy Nhơn</td><td>12</td></tr></table><div><b>Bài toán:</b> Lọc tài xế chạy tuyến <b>Quy Nhơn</b> VÀ có số chuyến <b>&gt;= 15</b>:</div><div class="formula-demo"><b>Công thức:</b> =FILTER(A2:C4, (B2:B4="Quy Nhơn")*(C2:C4&gt;=15), "Không đạt")<br><b>Kết quả:</b> Hùng | Quy Nhơn | 18</div>'
-    },
-    {
-        cat: "lookup", is365: true, badge: "Mảng động",
-        title: "UNIQUE & SORT",
-        syntax: "=UNIQUE(array, [by_col], [exactly_once]) | =SORT(array, [sort_index], [sort_order])",
-        desc: "UNIQUE trích xuất danh sách duy nhất (loại bỏ trùng lặp tự động). SORT sắp xếp mảng dữ liệu theo cột chỉ định (1: Tăng dần, -1: Giảm dần).",
-        exampleHTML: '<div><b>Bài toán:</b> Lấy danh sách khách hàng không trùng từ <code>A2:A100</code> và sắp xếp theo thứ tự A-Z:</div><div class="formula-demo"><b>Công thức:</b> =SORT(UNIQUE(A2:A100), 1, 1)<br><b>Kết quả:</b> Tự động tạo danh sách khách hàng duy nhất xếp theo bảng chữ cái.</div>'
-    },
-    {
-        cat: "lookup", is365: true, badge: "Mảng động",
-        title: "SEQUENCE",
-        syntax: "=SEQUENCE(rows, [columns], [start], [step])",
-        desc: "Tạo nhanh một dãy số tăng/giảm tự động theo số dòng và số cột tùy chọn (dùng đánh số thứ tự tự động hoặc tạo chuỗi ngày tháng).",
-        exampleHTML: '<div><b>Bài toán 1:</b> Đánh số thứ tự tự động theo danh sách tên ở <code>B2:B50</code>:</div><div class="formula-demo"><b>Công thức:</b> =SEQUENCE(COUNTA(B2:B50))</div><div style="margin-top:6px;"><b>Bài toán 2:</b> Tạo 7 ngày liên tiếp từ ngày <b>24/11/2026</b>:</div><div class="formula-demo"><b>Công thức:</b> =SEQUENCE(7, 1, DATE(2026,11,24), 1)</div>'
-    },
-    {
-        cat: "text", is365: true, badge: "Xử lý chuỗi",
-        title: "TEXTSPLIT",
-        syntax: "=TEXTSPLIT(text, col_delimiter, [row_delimiter], [ignore_empty], [match_mode], [pad_with])",
-        desc: "Tách một chuỗi văn bản thành nhiều cột hoặc nhiều dòng dựa trên ký tự phân cách (thay thế hoàn hảo tính năng Text to Columns bằng công thức động).",
-        exampleHTML: '<div><b>Dữ liệu ô A2:</b> <code>"SP01 - Sữa tươi Vinamilk - 32000"</code></div><div class="formula-demo"><b>Công thức:</b> =TEXTSPLIT(A2, " - ")<br><b>Kết quả:</b> Ô B2: <code>SP01</code> | Ô C2: <code>Sữa tươi Vinamilk</code> | Ô D2: <code>32000</code></div>'
-    },
-    {
-        cat: "text", is365: true, badge: "Xử lý chuỗi",
-        title: "TEXTBEFORE & TEXTAFTER",
-        syntax: "=TEXTBEFORE(text, delimiter, [instance_num]) | =TEXTAFTER(text, delimiter, [instance_num])",
-        desc: "Trích xuất nhanh phần văn bản nằm trước hoặc nằm sau một ký tự phân cách (hỗ trợ đếm từ cuối lên bằng số âm như -1).",
-        exampleHTML: '<div><b>Dữ liệu ô A2:</b> <code>"Kho_BinhDinh_Tuyen05_2026"</code></div><div class="formula-demo"><b>Trước dấu "_" đầu tiên:</b> =TEXTBEFORE(A2, "_") &rarr; <code>Kho</code><br><b>Sau dấu "_" cuối cùng:</b> =TEXTAFTER(A2, "_", -1) &rarr; <code>2026</code><br><b>Lấy "Tuyen05" ở giữa:</b> =TEXTBEFORE(TEXTAFTER(A2, "_", 2), "_")</div>'
-    },
-    {
-        cat: "text", is365: true, badge: "Xử lý chuỗi",
-        title: "TEXTJOIN",
-        syntax: "=TEXTJOIN(delimiter, ignore_empty, text1, [text2], ...)",
-        desc: "Nối nhiều chuỗi/vùng dữ liệu lại với nhau bằng một ký tự phân cách chung, có tùy chọn tự động bỏ qua các ô trống (TRUE).",
-        exampleHTML: '<div><b>Dữ liệu A2:A5:</b> <code>"DH01"</code>, <i>(trống)</i>, <code>"DH02"</code>, <code>"DH03"</code></div><div class="formula-demo"><b>Công thức:</b> =TEXTJOIN(", ", TRUE, A2:A5)<br><b>Kết quả:</b> <code>"DH01, DH02, DH03"</code></div>'
-    },
-    {
-        cat: "reshape", is365: true, badge: "Tổng hợp mới",
-        title: "GROUPBY & PIVOTBY",
-        syntax: "=GROUPBY(row_fields, values, function, [field_headers], [total_depth], [sort_order])",
-        desc: "Hàm siêu mới của Excel 365: Tạo bảng tổng hợp giống hệt Pivot Table chỉ bằng 1 công thức duy nhất, tự động cập nhật ngay khi dữ liệu gốc thay đổi mà không cần bấm Refresh!",
-        exampleHTML: '<table class="mini-table"><tr><th>A (Khu vực)</th><th>B (Sản phẩm)</th><th>C (Doanh thu)</th></tr><tr><td>Miền Trung</td><td>Sữa tươi</td><td>500</td></tr><tr><td>Miền Trung</td><td>Sữa chua</td><td>300</td></tr><tr><td>Miền Nam</td><td>Sữa tươi</td><td>700</td></tr></table><div><b>Bài toán:</b> Tính tổng Doanh thu theo từng Khu vực bằng công thức:</div><div class="formula-demo"><b>Công thức:</b> =GROUPBY(A1:A4, C1:C4, SUM, 3, 1)<br><b>Kết quả:</b> Tự tạo bảng tổng hợp gồm tiêu đề, tổng từng khu vực và dòng Grand Total.</div>'
-    },
-    {
-        cat: "reshape", is365: true, badge: "Gộp bảng",
-        title: "VSTACK & HSTACK",
-        syntax: "=VSTACK(array1, [array2], ...) | =HSTACK(array1, [array2], ...)",
-        desc: "VSTACK xếp chồng nhiều bảng dữ liệu từ nhiều Sheet khác nhau theo chiều dọc. HSTACK ghép nhiều bảng theo chiều ngang.",
-        exampleHTML: '<div><b>Bài toán:</b> Gộp dữ liệu bán hàng từ 3 sheet <code>Thang1</code>, <code>Thang2</code>, <code>Thang3</code> (cùng cấu trúc cột A:D) thành 1 bảng tổng:</div><div class="formula-demo"><b>Công thức:</b> =VSTACK(Thang1:Thang3!A2:D50)<br><b>Lọc bỏ dòng trống:</b> =FILTER(VSTACK(Thang1:Thang3!A2:D50), VSTACK(Thang1:Thang3!A2:A50)&lt;&gt;"")</div>'
-    },
-    {
-        cat: "reshape", is365: true, badge: "Xoay bảng",
-        title: "TOCOL & TOROW",
-        syntax: "=TOCOL(array, [ignore], [scan_by_column]) | =TOROW(array, [ignore], [scan_by_column])",
-        desc: "TOCOL biến một bảng nhiều dòng nhiều cột thành 1 cột duy nhất (bỏ qua ô trống hoặc lỗi). TOROW biến thành 1 dòng duy nhất.",
-        exampleHTML: '<div><b>Bài toán:</b> Gom toàn bộ mã nhân viên đang nằm rải rác trong bảng <code>A2:E10</code> thành 1 cột danh sách sạch (bỏ ô trống):</div><div class="formula-demo"><b>Công thức:</b> =TOCOL(A2:E10, 1)<br><b>Tham số ignore:</b> 0 = giữ tất cả | 1 = bỏ ô trống | 2 = bỏ ô lỗi | 3 = bỏ cả trống &amp; lỗi.</div>'
-    },
-    {
-        cat: "reshape", is365: true, badge: "Cắt & Chọn",
-        title: "TAKE, DROP & CHOOSECOLS",
-        syntax: "=TAKE(array, rows, [columns]) | =CHOOSECOLS(array, col_num1, [col_num2], ...)",
-        desc: "TAKE lấy N dòng đầu (số dương) hoặc N dòng cuối (số âm). DROP loại bỏ N dòng đầu/cuối. CHOOSECOLS trích xuất các cột bất kỳ theo thứ tự tùy chọn.",
-        exampleHTML: '<div><b>Bài toán:</b> Lấy <b>Top 3</b> nhân viên doanh số cao nhất từ bảng <code>A2:D20</code> (cột D là doanh số) và chỉ hiển thị cột Tên (1) và Doanh số (4):</div><div class="formula-demo"><b>Công thức:</b> =TAKE(SORT(CHOOSECOLS(A2:D20, 1, 4), 2, -1), 3)<br><b>Kết quả:</b> Trả về đúng 3 dòng cao nhất với 2 cột cần xem.</div>'
-    },
-    {
-        cat: "lambda", is365: true, badge: "Tối ưu công thức",
-        title: "LET (Đặt biến trong công thức)",
-        syntax: "=LET(name1, value1, [name2, value2], ..., calculation)",
-        desc: "Cho phép đặt tên biến cho các phép tính trung gian ngay bên trong công thức. Giúp công thức dài trở nên ngắn gọn, dễ đọc và tính toán nhanh hơn gấp nhiều lần.",
-        exampleHTML: '<div><b>Bài toán:</b> Tính tổng doanh số của "An", nếu &gt; 100 thì thưởng 10%, ngược lại ghi "Chưa đạt" (tránh lặp lại hàm SUMIFS 2 lần):</div><div class="formula-demo"><b>Công thức:</b> =LET(ds, SUMIFS(C2:C50, A2:A50, "An"), IF(ds&gt;100, ds*10%, "Chưa đạt"))</div>'
-    },
-    {
-        cat: "lambda", is365: true, badge: "Tự tạo hàm",
-        title: "LAMBDA & BYROW",
-        syntax: "=LAMBDA(parameter1, calculation) | =BYROW(array, LAMBDA(row, ...))",
-        desc: "LAMBDA cho phép tự định nghĩa hàm riêng trong Name Manager mà không cần VBA. Kết hợp với BYROW để tính toán từng dòng trên mảng động.",
-        exampleHTML: '<div><b>Bài toán:</b> Tìm giá trị lớn nhất của từng dòng cho bảng điểm <code>B2:E10</code> mà không cần kéo công thức xuống dưới:</div><div class="formula-demo"><b>Công thức:</b> =BYROW(B2:E10, LAMBDA(dong, MAX(dong)))<br><b>Kết quả:</b> Tự động đổ ra mảng giá trị lớn nhất của từng dòng.</div>'
-    },
-    {
-        cat: "classic", is365: false, badge: "Tính tổng ĐK",
-        title: "SUMIFS & COUNTIFS",
-        syntax: "=SUMIFS(sum_range, criteria_range1, criteria1, [criteria_range2, criteria2], ...)",
-        desc: "Tính tổng và đếm số lượng thỏa mãn đồng thời nhiều điều kiện. Hỗ trợ ký tự đại diện (*, ?) và toán tử so sánh.",
-        exampleHTML: '<div><b>Bài toán:</b> Tính tổng tiền cột C với điều kiện cột A là <b>"Bình Định"</b> và cột B <b>khác "Hủy"</b>:</div><div class="formula-demo"><b>Công thức:</b> =SUMIFS(C2:C100, A2:A100, "Bình Định", B2:B100, "&lt;&gt;Hủy")</div>'
-    },
-    {
-        cat: "classic", is365: false, badge: "Tổng hợp lọc",
-        title: "SUBTOTAL & AGGREGATE",
-        syntax: "=SUBTOTAL(function_num, ref1) | =AGGREGATE(function_num, options, array)",
-        desc: "Tính toán trên danh sách đang lọc (Filter). AGGREGATE mạnh hơn SUBTOTAL vì có thể bỏ qua cả các ô đang bị lỗi (#N/A, #DIV/0!) bên trong vùng tính.",
-        exampleHTML: '<div><b>Bài toán:</b> Tính tổng cột <code>C2:C100</code>, bỏ qua dòng ẩn do Filter VÀ bỏ qua luôn các ô bị lỗi công thức:</div><div class="formula-demo"><b>Công thức:</b> =AGGREGATE(9, 7, C2:C100)<br><b>Giải thích:</b> Số <b>9</b> = Hàm SUM | Số <b>7</b> = Bỏ qua dòng ẩn &amp; ô lỗi.</div>'
-    },
-    {
-        cat: "classic", is365: false, badge: "Xử lý ngày",
-        title: "EOMONTH & WORKDAY.INTL",
-        syntax: "=EOMONTH(start_date, months) | =WORKDAY.INTL(start_date, days, [weekend], [holidays])",
-        desc: "EOMONTH tìm ngày cuối cùng của tháng. WORKDAY.INTL tính ngày làm việc thực tế (tự trừ Chủ Nhật và ngày Lễ).",
-        exampleHTML: '<div><b>Bài toán 1:</b> Tìm ngày cuối tháng của ngày ở ô <code>A2</code> (<code>15/02/2026</code>):</div><div class="formula-demo"><b>Công thức:</b> =EOMONTH(A2, 0) &rarr; <code>28/02/2026</code></div><div style="margin-top:6px;"><b>Bài toán 2:</b> Cộng thêm <b>5 ngày làm việc</b> (chỉ nghỉ Chủ Nhật, mã = 11):</div><div class="formula-demo"><b>Công thức:</b> =WORKDAY.INTL(A2, 5, 11)</div>'
-    }
-];
+(function() {
+    var dataEl = document.getElementById('excelDataJson');
+    var excelFunctions = JSON.parse(dataEl.textContent);
 
-const contentList = document.getElementById('contentList');
-const searchInput = document.getElementById('searchInput');
-const tabBtns = document.querySelectorAll('.tab-btn');
-const itemCount = document.getElementById('itemCount');
+    var contentList = document.getElementById('contentList');
+    var searchInput = document.getElementById('searchInput');
+    var tabBtns = document.querySelectorAll('.tab-btn');
+    var itemCount = document.getElementById('itemCount');
+    var currentCategory = 'all';
 
-let currentCategory = 'all';
-
-function renderCards() {
-    const keyword = searchInput.value.toLowerCase().trim();
-    contentList.innerHTML = '';
-
-    const filtered = excelFunctions.filter(function(item) {
-        const matchCat = currentCategory === 'all' || item.cat === currentCategory;
-        const matchText = item.title.toLowerCase().indexOf(keyword) !== -1 || 
-                          item.desc.toLowerCase().indexOf(keyword) !== -1 || 
-                          item.syntax.toLowerCase().indexOf(keyword) !== -1 ||
-                          item.exampleHTML.toLowerCase().indexOf(keyword) !== -1;
-        return matchCat && matchText;
-    });
-
-    itemCount.innerText = filtered.length + ' hàm';
-
-    if (filtered.length === 0) {
-        contentList.innerHTML = '<p style="text-align:center; color:#6b7280; margin-top:24px;">Không tìm thấy hàm phù hợp với từ khóa.</p>';
-        return;
-    }
-
-    filtered.forEach(function(item) {
-        const card = document.createElement('div');
-        card.className = 'card';
-
-        const header = document.createElement('div');
-        header.className = 'card-header';
-
-        const titleGroup = document.createElement('div');
-        titleGroup.className = 'title-group';
-
-        const titleEl = document.createElement('span');
-        titleEl.className = 'card-title';
-        titleEl.textContent = item.title;
-        titleGroup.appendChild(titleEl);
-
-        if (item.is365) {
-            const tag365 = document.createElement('span');
-            tag365.className = 'tag-365';
-            tag365.textContent = 'Excel 365';
-            titleGroup.appendChild(tag365);
+    function copyTextToClipboard(text, btn) {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(function() {
+                showCopiedState(btn);
+            }).catch(function() {
+                fallbackCopy(text, btn);
+            });
+        } else {
+            fallbackCopy(text, btn);
         }
+    }
 
-        const badgeEl = document.createElement('span');
-        badgeEl.className = 'badge';
-        badgeEl.textContent = item.badge;
+    function fallbackCopy(text, btn) {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        try {
+            document.execCommand('copy');
+            showCopiedState(btn);
+        } catch (e) {}
+        document.body.removeChild(ta);
+    }
 
-        header.appendChild(titleGroup);
-        header.appendChild(badgeEl);
+    function showCopiedState(btn) {
+        var oldText = btn.textContent;
+        btn.textContent = 'Đã chép';
+        btn.style.background = '#dcfce7';
+        btn.style.color = '#166534';
+        setTimeout(function() {
+            btn.textContent = oldText;
+            btn.style.background = '#ffffff';
+            btn.style.color = '#334155';
+        }, 1200);
+    }
 
-        const syntaxWrapper = document.createElement('div');
-        syntaxWrapper.className = 'syntax-wrapper';
-
-        const syntaxEl = document.createElement('div');
-        syntaxEl.className = 'syntax';
-        syntaxEl.textContent = item.syntax;
-
-        const copyBtn = document.createElement('button');
-        copyBtn.className = 'copy-btn';
-        copyBtn.textContent = 'Chép';
-        copyBtn.addEventListener('click', function() {
-            if (navigator.clipboard) {
-                navigator.clipboard.writeText(item.syntax);
+    function buildTable(rows) {
+        if (!rows || rows.length === 0) return null;
+        var table = document.createElement('table');
+        table.className = 'mini-table';
+        for (var i = 0; i < rows.length; i++) {
+            var tr = document.createElement('tr');
+            for (var j = 0; j < rows[i].length; j++) {
+                var cell = document.createElement(i === 0 ? 'th' : 'td');
+                cell.textContent = rows[i][j];
+                tr.appendChild(cell);
             }
-            copyBtn.textContent = 'Đã chép';
-            copyBtn.style.background = '#dcfce7';
-            copyBtn.style.color = '#166534';
-            setTimeout(function() {
-                copyBtn.textContent = 'Chép';
-                copyBtn.style.background = 'white';
-                copyBtn.style.color = '#334155';
-            }, 1200);
+            table.appendChild(tr);
+        }
+        return table;
+    }
+
+    function renderCards() {
+        var keyword = searchInput.value.toLowerCase().trim();
+        contentList.innerHTML = '';
+
+        var filtered = excelFunctions.filter(function(item) {
+            var matchCat = (currentCategory === 'all') || (item.cat === currentCategory);
+            if (!matchCat) return false;
+            if (!keyword) return true;
+
+            var haystack = (
+                item.title + ' ' +
+                item.badge + ' ' +
+                item.desc + ' ' +
+                item.syntax + ' ' +
+                item.problem + ' ' +
+                item.formula + ' ' +
+                item.result
+            ).toLowerCase();
+            return haystack.indexOf(keyword) !== -1;
         });
 
-        syntaxWrapper.appendChild(syntaxEl);
-        syntaxWrapper.appendChild(copyBtn);
+        itemCount.textContent = filtered.length + ' hàm';
 
-        const descEl = document.createElement('div');
-        descEl.className = 'desc';
-        descEl.textContent = item.desc;
+        if (filtered.length === 0) {
+            var empty = document.createElement('div');
+            empty.className = 'empty-msg';
+            empty.textContent = 'Không tìm thấy hàm phù hợp với từ khóa.';
+            contentList.appendChild(empty);
+            return;
+        }
 
-        const exBox = document.createElement('div');
-        exBox.className = 'example-box';
-        exBox.innerHTML = '<span class="example-label">💡 Ví dụ &amp; Công thức mẫu</span>' + item.exampleHTML;
+        for (var i = 0; i < filtered.length; i++) {
+            (function(item) {
+                var card = document.createElement('div');
+                card.className = 'card';
 
-        card.appendChild(header);
-        card.appendChild(syntaxWrapper);
-        card.appendChild(descEl);
-        card.appendChild(exBox);
+                // Header
+                var header = document.createElement('div');
+                header.className = 'card-header';
 
-        contentList.appendChild(card);
-    });
-}
+                var titleGroup = document.createElement('div');
+                titleGroup.className = 'title-group';
 
-tabBtns.forEach(function(btn) {
-    btn.addEventListener('click', function() {
-        tabBtns.forEach(function(b) { b.classList.remove('active'); });
-        btn.classList.add('active');
-        currentCategory = btn.getAttribute('data-cat');
-        renderCards();
-    });
-});
+                var titleEl = document.createElement('span');
+                titleEl.className = 'card-title';
+                titleEl.textContent = item.title;
+                titleGroup.appendChild(titleEl);
 
-searchInput.addEventListener('input', renderCards);
+                var tag365 = document.createElement('span');
+                tag365.className = 'tag-365';
+                tag365.textContent = 'Excel 365';
+                titleGroup.appendChild(tag365);
 
-renderCards();
+                var badgeEl = document.createElement('span');
+                badgeEl.className = 'badge';
+                badgeEl.textContent = item.badge;
+
+                header.appendChild(titleGroup);
+                header.appendChild(badgeEl);
+
+                // Syntax
+                var syntaxWrapper = document.createElement('div');
+                syntaxWrapper.className = 'syntax-wrapper';
+
+                var syntaxEl = document.createElement('div');
+                syntaxEl.className = 'syntax';
+                syntaxEl.textContent = item.syntax;
+
+                var copySyntaxBtn = document.createElement('button');
+                copySyntaxBtn.className = 'copy-btn';
+                copySyntaxBtn.textContent = 'Chép';
+                copySyntaxBtn.addEventListener('click', function() {
+                    copyTextToClipboard(item.syntax, copySyntaxBtn);
+                });
+
+                syntaxWrapper.appendChild(syntaxEl);
+                syntaxWrapper.appendChild(copySyntaxBtn);
+
+                // Description
+                var descEl = document.createElement('div');
+                descEl.className = 'desc';
+                descEl.textContent = item.desc;
+
+                // Example Box
+                var exBox = document.createElement('div');
+                exBox.className = 'example-box';
+
+                var exLabel = document.createElement('span');
+                exLabel.className = 'example-label';
+                exLabel.textContent = '💡 Ví dụ nâng cao';
+                exBox.appendChild(exLabel);
+
+                var tableEl = buildTable(item.table);
+                if (tableEl) exBox.appendChild(tableEl);
+
+                var probEl = document.createElement('div');
+                probEl.className = 'problem-text';
+                var probStrong = document.createElement('strong');
+                probStrong.textContent = 'Bài toán: ';
+                probEl.appendChild(probStrong);
+                probEl.appendChild(document.createTextNode(item.problem));
+                exBox.appendChild(probEl);
+
+                var formulaDemo = document.createElement('div');
+                formulaDemo.className = 'formula-demo';
+                formulaDemo.textContent = item.formula;
+
+                var copyFormulaBtn = document.createElement('button');
+                copyFormulaBtn.className = 'copy-btn';
+                copyFormulaBtn.textContent = 'Chép';
+                copyFormulaBtn.addEventListener('click', function() {
+                    copyTextToClipboard(item.formula, copyFormulaBtn);
+                });
+                formulaDemo.appendChild(copyFormulaBtn);
+                exBox.appendChild(formulaDemo);
+
+                var resEl = document.createElement('div');
+                resEl.className = 'result-text';
+                var resStrong = document.createElement('strong');
+                resStrong.textContent = 'Kết quả: ';
+                resEl.appendChild(resStrong);
+                resEl.appendChild(document.createTextNode(item.result));
+                exBox.appendChild(resEl);
+
+                card.appendChild(header);
+                card.appendChild(syntaxWrapper);
+                card.appendChild(descEl);
+                card.appendChild(exBox);
+
+                contentList.appendChild(card);
+            })(filtered[i]);
+        }
+    }
+
+    for (var k = 0; k < tabBtns.length; k++) {
+        tabBtns[k].addEventListener('click', function() {
+            for (var m = 0; m < tabBtns.length; m++) {
+                tabBtns[m].classList.remove('active');
+            }
+            this.classList.add('active');
+            currentCategory = this.getAttribute('data-cat');
+            renderCards();
+        });
+    }
+
+    searchInput.addEventListener('input', renderCards);
+    renderCards();
+})();
 </script>
 </body>
 </html>
